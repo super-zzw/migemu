@@ -1,0 +1,378 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/index/list",
+			"style": {
+				"navigationBarTitleText": "更多课程",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/index/good",
+			"style": {
+				"navigationBarTitleText": "课程详情"
+			}
+		},
+		{
+			"path": "pages/index/article",
+			"style": {
+				"navigationBarTitleText": "详情"
+			}
+		},
+		{
+			"path": "pages/index/location",
+			"style": {
+				"navigationBarTitleText": "上课地点"
+			}
+		},
+		{
+			"path": "pages/author/author",
+			"style": {}
+		},
+		{
+			"path": "pages/author/telBind",
+			"style": {}
+		},
+		{
+			"path": "pages/author/userInfo",
+			"style": {}
+		},
+		{
+			"path": "pages/author/changePhone",
+			"style": {
+				"navigationBarTitleText": "修改手机号"
+			}
+		},
+		{
+			"path": "pages/rebate/index",
+			"style": {
+				"navigationBarTitleText": "邀请返利"
+			}
+		},
+		{
+			"path": "pages/rebate/rule",
+			"style": {
+				"navigationBarTitleText": "详细规则"
+			}
+		},
+		{
+			"path": "pages/rebate/successToast",
+			"style": {
+				"navigationBarTitleText": "提现成功"
+			}
+		},
+		{
+			"path": "pages/rebate/failToast",
+			"style": {
+				"navigationBarTitleText": "提现失败"
+			}
+		},
+		{
+			"path": "pages/rebate/record",
+			"style": {
+				"navigationBarTitleText": "邀请记录"
+			}
+		},
+		{
+			"path": "pages/rebate/applyFor",
+			"style": {
+				"navigationBarTitleText": "申请提现"
+			}
+		},
+		{
+			"path": "pages/my/classSchedule",
+			"style": {
+				"navigationBarTitleText": "我的课表",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/my/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationBarBackgroundColor": "#2ACC8C",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/my/overview",
+			"style": {
+				"navigationBarTitleText": "课程概况",
+				"navigationBarBackgroundColor": "#2ACC8C",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/my/lessonsDetail",
+			"style": {
+				"navigationBarTitleText": "课节概况",
+				"navigationBarBackgroundColor":"#2ACC8C",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		
+		{
+			"path": "pages/my/evaluate",
+			"style": {
+				"navigationBarTitleText": "课程评价"
+			}
+		},
+		{
+			"path": "pages/my/lookEval",
+			"style": {
+				"navigationBarTitleText": "课程评价"
+			}
+		},
+		{
+			"path": "pages/my/courseMaterial",
+			"style": {
+				"navigationBarTitleText": "课程资料",
+				"navigationBarBackgroundColor":"#ffffff"
+			}
+		},
+		{
+			"path": "pages/my/bookingClass",
+			"style": {
+				"navigationBarTitleText": "预约上课",
+				"navigationBarBackgroundColor":"#ffffff"
+			}
+		},
+		{
+			"path": "pages/my/myCovenant",
+			"style": {
+				"navigationBarTitleText": "我的约课",
+				"navigationBarBackgroundColor":"#ffffff"
+			}
+		},
+		{
+			"path": "pages/my/lookTeacher",
+			"style": {
+				"navigationBarTitleText": "联系老师",
+				"navigationBarBackgroundColor":"#ffffff"
+			}
+		},
+		{
+			"path": "pages/my/set",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
+		},
+		{
+			"path": "pages/my/students",
+			"style": {
+				"navigationBarTitleText": "切换学员"
+			}
+		},
+		{
+			"path": "pages/my/classInfo",
+			"style": {
+				"navigationBarTitleText": "我的课时",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/my/myIntegral",
+			"style": {
+				"navigationBarTitleText": "积分明细"
+			}
+		},
+		{
+			"path": "pages/rank/index",
+			"style": {
+				"navigationBarTitleText": "排行榜"
+			}
+		}, {
+			"path": "pages/notice/index",
+			"style": {
+				"navigationBarTitleText": "消息通知",
+				"enablePullDownRefresh": true
+			}
+		},{
+			"path": "pages/notice/detail",
+			"style": {
+				"navigationBarTitleText": "通知详情"
+			}
+		}, {
+			"path": "pages/order/confirm",
+			"style": {
+				"navigationBarTitleText": "订单确认"
+			}
+		}, {
+			"path": "pages/order/paySuccess",
+			"style": {
+				"navigationBarTitleText": "支付成功"
+			}
+		}, {
+			"path": "pages/order/payFail",
+			"style": {
+				"navigationBarTitleText": "支付失败"
+			}
+		}
+	],
+	"subPackages": [
+		{
+			"root": "pagesA",
+			"pages": [
+				{
+					"path": "teacher/task",
+					"style": {
+						"navigationBarTitleText": "作业管理",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "teacher/teacherLookEval",
+					"style": {
+						"navigationBarTitleText": "查看课评"
+					}
+				},
+				{
+					"path": "teacher/afterClass",
+					"style": {
+						"navigationBarTitleText": "课后管理",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "teacher/fillClass",
+					"style": {
+						"navigationBarTitleText": "填写课评"
+					}
+				},{
+					"path": "teacher/statisticsClass",
+					"style": {
+						"navigationBarTitleText": "课时统计"
+					}
+				},
+				{
+					"path": "teacher/taskList",
+					"style": {
+						"navigationBarTitleText": "作业列表",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "teacher/taskDetail",
+					"style": {
+						"navigationBarTitleText": "作业详情"
+					}
+				},
+				{
+					"path": "teacher/taskReview",
+					"style": {
+						"navigationBarTitleText": "批阅作业"
+					}
+				},
+				{
+					"path": "teacher/taskQear",
+					"style": {
+						"navigationBarTitleText": "布置作业"
+					}
+				},
+				{
+					"path": "teacher/teacherLessonsDetail",
+					"style": {
+						"navigationBarTitleText": "课节详情",
+						"navigationBarBackgroundColor":"#2ACC8C",
+						"navigationBarTextStyle":"white"
+					}
+				}
+			]
+	    },
+		{
+			"root": "pagesB",
+			"pages": [
+				{
+					"path": "student/task",
+					"style": {
+						"navigationBarTitleText": "我的作业",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "student/taskDetail",
+					"style": {
+						"navigationBarTitleText": "作业详情"
+					}
+				},
+				{
+					"path": "student/taskMake",
+					"style": {
+						"navigationBarTitleText": "做作业"
+					}
+				},
+				{
+					"path": "student/infoSubmit",
+					"style": {
+						"navigationBarTitleText": "鹦鹉学唱"
+					}
+				},
+				{
+					"path": "student/infoSuToast",
+					"style": {
+						"navigationBarTitleText": "鹦鹉学唱"
+					}
+				},
+				{
+					"path": "student/infoFaToast",
+					"style": {
+						"navigationBarTitleText": "鹦鹉学唱"
+					}
+				}
+			]
+		}
+	],
+	"preloadRule": {
+		"pagesA/teacher/task": {
+			"network": "all",
+			"packages": ["pagesA"]
+		},
+		"pagesB/student/task": {
+			"network": "all",
+			"packages": ["pagesB"]
+		}
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "鹦鹉学唱",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#909399",
+		"selectedColor": "#2ACC8C",
+		"borderStyle": "black",
+		"backgroundColor": "#FFFFFF",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/home1.png",
+				"selectedIconPath": "static/home2.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/rank/index",
+				"iconPath": "static/rank1.png",
+				"selectedIconPath": "static/rank2.png",
+				"text": "排行榜"
+			},
+			{
+				"pagePath": "pages/notice/index",
+				"iconPath": "static/notice1.png",
+				"selectedIconPath": "static/notice2.png",
+				"text": "消息通知"
+			},
+			{
+				"pagePath": "pages/my/index",
+				"iconPath": "static/my1.png",
+				"selectedIconPath": "static/my2.png",
+				"text": "我的"
+			}
+		]
+	}
+}

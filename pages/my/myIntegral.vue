@@ -40,7 +40,7 @@ import DefaultPage from "../../components/defaultPage.vue"
 	export default{
 		data(){
 			return{
-				selectArr: ['全部','获取','使用'],
+				selectArr: ['全部记录','获取','使用'],
 				index: 0,
 				data_list:[],
 				sumAmount: 0
@@ -97,7 +97,7 @@ import DefaultPage from "../../components/defaultPage.vue"
 			.img-icon{
 				width:86rpx;
 				height:86rpx;
-				background:#2ACC8C;
+				background:#F72C2C;
 				border-radius: 50%;
 				image{
 					width: 86rpx;

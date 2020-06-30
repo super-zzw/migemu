@@ -64,10 +64,10 @@
 						<image src="../../static/teacher/qxjk.png" ></image>
 						取消结课
 					</view>
-					<view class="block-bottom-col flex align-center justify-center" @tap="navTo('./taskQear?cid=' + detail.arrangeCourseId)" data-target="Modal">
+					<!-- <view class="block-bottom-col flex align-center justify-center" @tap="navTo('./taskQear?cid=' + detail.arrangeCourseId)" data-target="Modal">
 						<image src="../../static/teacher/bz.png" ></image>
 						布置作业
-					</view>
+					</view> -->
 				</view>
 				<!-- 线上 -->
 			</view>
@@ -228,7 +228,7 @@
 				uni.showModal({
 					title: '确认是否结课?',
 					content: "结课后不可修改签到状态或取消结课",
-					confirmColor: "#2ACC8C",
+					confirmColor: "#FDC623",
 					success(res) {
 						if(res.confirm){
 							that.closeSession();
@@ -475,7 +475,7 @@
 				.bar{
 					width: 40%;
 					height: 100%;
-					background-color: #2ACC8C;
+					background-color: #FDC623;
 					border-radius: 10rpx;
 				}
 			}
@@ -521,7 +521,7 @@
 				transform: translateY(-50%);
 				width: 8rpx;
 				height: 40rpx;
-				background:rgba(42,204,140,1);
+				background:#FDC623;
 				border-radius:0px 200px 200px 0px;  
 			}
 		}
@@ -533,7 +533,7 @@
 				margin-right: 50rpx;
 				text{
 					font-size: 40rpx;
-					color: #2ACC8C;
+					color: #FDC623;
 					margin-right: 10rpx;
 					font-weight: bold;
 				}
@@ -629,8 +629,8 @@
 						border-radius:26px;
 						margin-top: 20rpx;
 						&.active{
-							border-color: #2ACC8C;
-							color: #2ACC8C;
+							border-color: #FDC623;
+							color: #FDC623;
 						}
 					}
 				}
@@ -680,7 +680,7 @@
 					color: #FFFFFF;
 					border-radius: 32rpx;
 					&.green{
-						background-color: #2ACC8C;
+						background-color: #FDC623;
 					}
 					&.gray{
 						background-color: #C0C4CC;
@@ -705,7 +705,7 @@
 					width: 378rpx;
 					height: 64rpx;
 					line-height: 64rpx;
-					background-color: #2ACC8C;
+					background-color: #FDC623;
 					border-radius: 32rpx;
 					color: #FFFFFF;
 					margin: 80rpx 0 40rpx ;
@@ -715,7 +715,7 @@
 				width: 378rpx;
 				height: 64rpx;
 				line-height: 64rpx;
-				background-color: #2ACC8C;
+				background-color: #FDC623;
 				border-radius: 32rpx;
 				color: #FFFFFF;
 			}

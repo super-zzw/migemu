@@ -361,7 +361,7 @@ export default{
 			width: 320rpx;
 			height: 88rpx;
 			border-radius: 44rpx;
-			background-color: #2ACC8C;
+			background-color: #FDC623;
 			margin-top: 26rpx;
 			text-align: center;
 			line-height: 88rpx;
@@ -371,9 +371,9 @@ export default{
 		}
 		.taskBtn2{
 			background-color: #fff;
-			border: 2rpx solid #2ACC8C;
+			border: 2rpx solid #FDC623;
 			box-sizing: border-box;
-			color: #2ACC8C;
+			color: #FDC623;
 		}
 	}
 }

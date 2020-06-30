@@ -94,7 +94,7 @@
 		color: #FFFFFF;
 		font-weight: 500;
 		margin: 40rpx 0 60rpx ;
-		background-color: #2ACC8C;
+		background-color: #FDC623;
 	}
 	.rich{
 		width: 686rpx;

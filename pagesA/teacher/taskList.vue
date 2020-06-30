@@ -168,8 +168,8 @@ export default{
 			font-weight: bold;
 		}
 		.tlTabItem.active{
-			color: #2ACC8C;
-			border-bottom: 4rpx solid #2ACC8C;
+			color: #FDC623;
+			border-bottom: 4rpx solid #FDC623;
 		}
 	}
 	.tabCont{
@@ -188,7 +188,7 @@ export default{
 					.sdText{
 						margin-right: 40rpx;
 						.sdT1{
-							color: #2ACC8C;
+							color: #FDC623;
 							font-weight: bold;
 							font-size: 40rpx;
 						}

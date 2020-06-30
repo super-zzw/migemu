@@ -231,7 +231,7 @@ import DefaultPage from "../../components/defaultPage.vue"
 		}
 		.text-btn{
 			padding: 8rpx 24rpx;
-			background-color: #2ACC8C;
+			background-color: #FDC623;
 			color: #FFFFFF;
 			font-size: 28rpx;
 			border-radius:28rpx;
@@ -278,11 +278,11 @@ import DefaultPage from "../../components/defaultPage.vue"
 				.make{
 					font-size: 32rpx;
 					border-radius:200px;
-					border:2rpx solid #2ACC8C;
-					color: #2ACC8C;
+					border:2rpx solid #FDC623;
+					color: #FDC623;
 					padding: 14rpx 40rpx;
 					&.bg{
-						background-color: #2ACC8C;
+						background-color:#FDC623;
 						color: #FFFFFF;
 					}
 				}
@@ -315,7 +315,7 @@ import DefaultPage from "../../components/defaultPage.vue"
 				width: 378rpx;
 				height: 64rpx;
 				line-height: 64rpx;
-				background-color: #2ACC8C;
+				background-color: #FDC623;
 				border-radius: 32rpx;
 				color: #FFFFFF;
 			}
@@ -335,7 +335,7 @@ import DefaultPage from "../../components/defaultPage.vue"
 					color: #FFFFFF;
 					border-radius: 32rpx;
 					&.green{
-						background-color: #2ACC8C;
+						background-color: #FDC623;
 					}
 					&.gray{
 						background-color: #C0C4CC;

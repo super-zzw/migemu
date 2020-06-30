@@ -247,7 +247,7 @@
 			z-index: -3;
 			width: 50rpx;
 			height: 50rpx;
-			background-color: #2ACC8C;
+			background-color: #FDC623;
 			border-radius: 50%;
 		}
 	}
@@ -344,7 +344,7 @@
 		font-size: 12px;
 		cursor: pointer;
 		font-size: 32rpx;
-		color: #2ACC8C;
+		color: #FDC623;
 		font-weight: 500;
 		text{
 			&:first-of-type{

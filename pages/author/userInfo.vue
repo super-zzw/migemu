@@ -199,7 +199,7 @@ import Avatar from "../../components/yq-avatar.vue";
 			width: 32rpx;
 			height: 32rpx;
 			border-radius: 50%;
-			background-color: #2ACC8C;
+			background-color: #F72C2C;
 			color: #FFFFFF;
 			font-size: 36rpx;
 			position: absolute;
@@ -250,7 +250,7 @@ import Avatar from "../../components/yq-avatar.vue";
 					border-radius: 50%;
 					position: relative;
 					&.active{
-						border-color: #2ACC8C;
+						border-color: #FDC623;
 					}
 					&.active::after{
 						position: absolute;
@@ -260,7 +260,7 @@ import Avatar from "../../components/yq-avatar.vue";
 						font-family: "cuIcon";
 						content: "\e645";
 						font-size: 22rpx;
-						color: #2ACC8C;
+						color: #FDC623;
 					}
 				}
 				radio{
@@ -274,16 +274,19 @@ import Avatar from "../../components/yq-avatar.vue";
 		}
 	}
 	.greenBtn{
-		background-color: #2ACC8C;
+		background-color: #FDC623;
 		border-radius: 44rpx;
-		color: #FFFFFF;
+		color:#303133;
 		margin-top: 80rpx;
 	}
 	.cancelBtn{
-		border-radius:44px;
-		border:2rpx solid #2ACC8C;
+		border-radius:44rpx;
+		border:none;
 		margin: 36rpx 0;
-		background-color: #FFFFFF;
-		color: #2ACC8C;
+		background-color: #FEF7DF;
+		color:#303133;
+		
 	}
+	.btn::after{ border: none; }
+	
 </style>

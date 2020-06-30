@@ -294,8 +294,8 @@ export default {
 			font-weight: bold;
 		}
 		.tlTabItem.active {
-			color: #2acc8c;
-			border-bottom: 4rpx solid #2acc8c;
+			color: #FDC623;
+			border-bottom: 4rpx solid #FDC623;
 		}
 	}
 	.tabCont {
@@ -313,7 +313,7 @@ export default {
 					.sdText {
 						margin-right: 40rpx;
 						.sdT1 {
-							color: #2acc8c;
+							color: #FDC623;
 							font-weight: bold;
 							font-size: 40rpx;
 						}
@@ -369,7 +369,7 @@ export default {
 			.uploadBtn{
 				width: 540rpx;
 				height: 80rpx;
-				background-color: #2ACC8C;
+				background-color:#FDC623;
 				border-radius: 44rpx;
 				line-height: 80rpx;
 				color: #FFFFFF;
@@ -482,7 +482,7 @@ export default {
 				border-radius: 32rpx;
 				&.green{
 					margin-right: 50rpx;
-					background-color: #2ACC8C;
+					background-color: #FDC623;
 				}
 				&.gray{
 					background-color: #C0C4CC;

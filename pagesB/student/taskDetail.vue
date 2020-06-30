@@ -235,7 +235,7 @@ export default{
 							background-color: #C0C4CC;
 						}
 						.tcpL3Text.t2{
-							background-color: #2ACC8C;
+							background-color: #FDC623;
 						}
 						.tcpL3Text.t3{
 							background-color: #F72C2C;
@@ -278,7 +278,7 @@ export default{
 			width: 686rpx;
 			height: 88rpx;
 			border-radius: 44rpx;
-			background-color: #2ACC8C;
+			background-color: #FDC623;
 			margin: auto;
 			margin-top: 26rpx;
 			text-align: center;

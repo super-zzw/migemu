@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<image src="../../static/logo.png" mode="" class="icon"></image>
-		<text class="title">鹦鹉学唱</text>
+		<!-- <text class="title">米格姆英语+</text> -->
 		<view class="inp flex align-center">
 			<input type="text" class="tel" v-model="userData.tel" placeholder="请输入手机号码" placeholder-class="placeholder" maxlength="11"></input>
 			<text class="num">+86</text>
@@ -17,7 +17,7 @@
 		</view>
 		<view  class="identity">
 			<label @tap="role='A'" class="idBox i1">
-				<image v-if="role == 'A'" class="idPic" src="../../static/student2.png" mode=""></image>
+				<image v-if="role == 'A'" class="idPic" src="../../static/student1.png" mode=""></image>
 				<image v-else class="idPic" src="../../static/student1.png" mode=""></image>
 				<view class="idCheck">
 					<!-- <radio :checked="role == 'A'?true:false"></radio> -->
@@ -26,7 +26,7 @@
 				</view>
 			</label>
 			<label @tap="role='B'" class="idBox i2">
-				<image v-if="role == 'B'" class="idPic" src="../../static/teacher2.png" mode=""></image>
+				<image v-if="role == 'B'" class="idPic" src="../../static/teacher1.png" mode=""></image>
 				<image v-else class="idPic" src="../../static/teacher1.png" mode=""></image>
 				<view class="idCheck">
 					<!-- <radio :checked="role == 'B'?true:false"></radio> -->
@@ -270,9 +270,9 @@ export default{
 		background-color: #FFFFFF;
 	}
 	.icon{
-		width: 120rpx;
-		height: 120rpx;
-		border-radius: 50%;
+		width: 300rpx;
+		height: 100rpx;
+		
 		margin: 50rpx 0 20rpx;
 	}
 	.title{
@@ -311,7 +311,7 @@ export default{
 			width: 116rpx;
 			height: 80rpx;
 			border-radius:0px 200rpx 200rpx 0px;
-			color: #2ACC8C;
+			color: #303133;
 			font-size: 28rpx;
 			position: absolute;
 			right: 0;
@@ -360,7 +360,7 @@ export default{
 				border-radius: 50%;
 				position: relative;
 				&.active{
-					border-color: #2ACC8C;
+					border-color: #FDC623;
 				}
 				&.active::after{
 					position: absolute;
@@ -370,7 +370,7 @@ export default{
 					font-family: "cuIcon";
 					content: "\e645";
 					font-size: 22rpx;
-					color: #2ACC8C;
+					color: #FDC623;
 					font-weight: bold;
 				}
 			}
@@ -382,8 +382,8 @@ export default{
 		}
 	}
 	.greenBtn{
-		background-color: #2ACC8C;
-		color: #FFFFFF;
+		background-color: #FDC623;
+		color: #303133;
 		margin:82rpx 0 30rpx 0;
 		border: none;
 		outline: none;
@@ -394,11 +394,11 @@ export default{
 		}
 	}
 	.tips{
-		color: #909399;
+		color: #A8ABB3;
 		font-size: 26rpx;
 		line-height: 36rpx;
 		.tipsText{
-			color: #2ACC8C;
+			color:#A8ABB3;
 		}
 	}
 </style>

@@ -47,7 +47,7 @@ export default{
 	}
 	.pfBtn1{
 		width: 540rpx;
-		background-color: #2ACC8C;
+		background-color: #FDC623;
 		border-radius: 44rpx;
 		line-height: 88rpx;
 		font-size: 32rpx;
@@ -59,9 +59,9 @@ export default{
 	.pfBtn2{
 		width: 540rpx;
 		margin-top: 38rpx;
-		border: 2rpx solid #2ACC8C;
+		border: 2rpx solid #FDC623;
 		border-radius: 44rpx;
-		color: #2ACC8C;
+		color: #FDC623;
 		text-align: center;
 		font-size: 32rpx;
 		line-height: 84rpx;

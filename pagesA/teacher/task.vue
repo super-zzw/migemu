@@ -225,7 +225,7 @@ export default{
 		.oprBtn{
 			width: 686rpx;
 			height: 88rpx;
-			background-color: #2ACC8C;
+			background-color:#FDC623;
 			border-radius: 44rpx;
 			color: #fff;
 			font-size: 32rpx;
@@ -246,13 +246,13 @@ export default{
 			color: #8799A3;
 		}
 		.sure{
-			color: #2ACC8C;
+			color: #FDC623;
 		}
 		.padding-xl{
 			padding: 32rpx;
 			background-color: #fff;
 			/deep/ radio .wx-radio-input.wx-radio-input-checked{
-				background-color: #2ACC8C!important;
+				background-color: #FDC623!important;
 			}
 		}
 	}

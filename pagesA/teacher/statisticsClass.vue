@@ -159,8 +159,8 @@
 		}
 		.text-btn{
 			padding: 8rpx 52rpx;
-			background-color: #2ACC8C;
-			color: #FFFFFF;
+			background-color: #FDC623;
+			color: #303133;
 			font-size: 28rpx;
 			border-radius:28rpx;
 		}

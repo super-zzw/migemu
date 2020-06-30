@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<image src="../../static/logo.png" mode="" class="icon"></image>
-		<text class="title">鹦鹉学唱</text>
+		<!-- <text class="title">鹦鹉学唱</text> -->
 		<text class="tips">为了保证用户安全和良好的用户体验，请确认授权以下信息</text>
 		<view class="text flex align-center">
 			<text class="radius"></text>
@@ -84,9 +84,9 @@ export default{
 		background-color: #FFFFFF;
 	}
 	.icon{
-		width: 120rpx;
-		height: 120rpx;
-		border-radius: 50%;
+		width: 300rpx;
+		height: 100rpx;
+		// border-radius: 50%;
 		margin: 50rpx 0 20rpx;
 	}
 	.title{
@@ -106,7 +106,7 @@ export default{
 		.radius{
 			width: 12rpx;
 			height: 12rpx;
-			background-color: #2ACC8C;
+			background-color: #FDC623;
 			border-radius: 50%;
 			margin-right: 10rpx;
 		}
@@ -117,14 +117,15 @@ export default{
 		}
 	}
 	.greenBtn{
-		background-color: #2ACC8C;
-		color: #FFFFFF;
+		background-color: #FDC623;
+		color: #303133;
 		margin:80rpx 0 40rpx 0;
 	}
 	.emptyBtn{
 		background-color: #FFFFFF;
-		border:2rpx solid rgba(42,204,140,1);
+		border:2rpx solid rgba(192,196,204,1);
 		border-radius: 44px;
-		color: #2ACC8C;
+		color:#909399;
 	}
+	button::after{ border: none; }
 </style>

@@ -57,7 +57,7 @@
 				var that = this;
 				uni.showModal({
 					title: '确认要删除吗?',
-					confirmColor: "#2ACC8C",
+					confirmColor: "#FDC623",
 					success(res) {
 						if(res.confirm){
 							that.deleteMaterial(i)

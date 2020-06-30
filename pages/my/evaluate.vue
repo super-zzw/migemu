@@ -183,7 +183,7 @@
 		width: 686rpx;
 		height: 88rpx;
 		line-height: 88rpx;
-		background-color: #2ACC8C;
+		background-color: #FDC623;
 		border-radius: 44rpx;
 		color: #FFFFFF;
 		font-size: 32rpx;

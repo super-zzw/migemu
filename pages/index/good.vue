@@ -46,10 +46,10 @@
 					<colorTag :tagData="course" :showSubjectLis="false" ></colorTag>
 				</view>
 			</view>
-			<view class="i3" @tap="showModal" data-target="Modal">
+			<!-- <view class="i3" @tap="showModal" data-target="Modal">
 				授课老师：{{course.teacherName}}
 				<image class="i2Icon" src="../../static/right.png" mode=""></image>
-			</view>
+			</view> -->
 		</view>
 		<view class="cont" v-if="course.type === 0">
 			<view class="contTile">
@@ -64,7 +64,7 @@
 		</view>
 		<view class="cont">
 			<view class="contTile">
-				报名截止时间
+				课程报名截止时间
 			</view>
 			<view class="deadTime">
 				{{course.registerEndTime}}
@@ -74,7 +74,7 @@
 			<view class="tabs">
 				<view class="tabItem" :class="descTab == 0 ? 'active' : ''" @tap="changeDescTab(0)">课程介绍</view>
 				<view class="tabItem" :class="descTab == 1 ? 'active' : ''" @tap="changeDescTab(1)">课程大纲</view>
-				<view class="tabItem" :class="descTab == 2 ? 'active' : ''" @tap="changeDescTab(2)">学员评价</view>
+				<!-- <view class="tabItem" :class="descTab == 2 ? 'active' : ''" @tap="changeDescTab(2)">学员评价</view> -->
 				<!-- <view class="tabItem" :class="descTab == 2 ? 'active' : ''" @tap="changeDescTab(2)">课程须知</view> -->
 			</view>
 			<swiper class="tabSwiper" :style="{height:swiperHeight + 'px'}" @change=changeTabSwiper :current="descTab" >
@@ -561,7 +561,7 @@
 			width: 8rpx;
 			height: 40rpx;
 			border-radius:0px 200rpx 200rpx 0px;
-			background-color: #2ACC8C;
+			background-color: #FDC623;
 			position: absolute;
 			left: 0;
 			top: -6rpx;
@@ -600,8 +600,8 @@
 				padding-bottom: 16rpx;
 			}
 			.tabItem.active{
-				color: #2ACC8C;
-				border-bottom: 4rpx solid #2ACC8C;
+				color: #FDC623;
+				border-bottom: 4rpx solid #FDC623;
 			}
 		}
 		.tabSwiper{
@@ -678,10 +678,10 @@
 				height: 100%;
 				flex: 1;
 				margin-left: 30rpx;
-				background-color: #2ACC8C;
+				background-color: #FDC623;
 				text-align: center;
 				line-height: 96rpx;
-				color: #fff;
+				color: #303133;
 				font-size: 36rpx;
 			}
 		}
@@ -706,7 +706,7 @@
 				margin-top: 20rpx;
 			}
 			.teComment{
-				color: #2ACC8C;
+				color: #FDC623;
 				font-size: 28rpx;
 				margin-top: 16rpx;
 			}

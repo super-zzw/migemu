@@ -109,7 +109,7 @@ export default {
 				border-radius: 50%;
 				position: relative;
 				&.active{
-					border-color: #2ACC8C;
+					border-color: #F72C2C;
 				}
 				&.active::after{
 					position: absolute;
@@ -119,7 +119,7 @@ export default {
 					font-family: "cuIcon";
 					content: "\e645";
 					font-size: 36rpx;
-					color: #2ACC8C;
+					color: #F72C2C;
 					font-weight: bold;
 				}
 			}
@@ -141,16 +141,16 @@ export default {
 			// 	transform: scale(0.7,0.7);
 			// }
 			/deep/ radio .wx-radio-input.wx-radio-input-checked{
-				background-color: #2ACC8C!important;
+				background-color:#FDC623!important;
 			}
 		}
 	}
 	
 	.stuBtn{
 		margin-top: 60rpx;
-		background-color: #2ACC8C;
+		background-color: #FDC623;
 		line-height: 88rpx;
-		color: #fff;
+		color: #303133;
 		text-align: center;
 		font-size: 32rpx;
 		border-radius: 44rpx;

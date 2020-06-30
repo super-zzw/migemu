@@ -134,7 +134,7 @@ export default{
 	}
 	.copyQrCode{
 		width: 540rpx;
-		background-color: #2ACC8C;
+		background-color: #FDC623;
 		border-radius: 44rpx;
 		text-align: center;
 		line-height: 80rpx;

@@ -220,7 +220,7 @@ import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vu
 		.headBg{
 			width: 100%;
 			height: 284rpx;
-			background:linear-gradient(180deg,rgba(42,204,140,1) 0%,rgba(42,204,140,1) 40%,rgba(67,213,155,0) 100%);
+			background:#FDC623;
 			position: absolute;
 		}
 		.block{
@@ -246,7 +246,7 @@ import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vu
 					padding: 6rpx 14rpx;
 					font-size: 28rpx;
 					color: #FFFFFF;
-					background-color: #2ACC8C;
+					background-color: #FDC623;
 					border-radius: 8rpx;
 				}
 			}
@@ -265,7 +265,7 @@ import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vu
 				margin: 12rpx 0 16rpx 0;
 				.bar{
 					height: 100%;
-					background-color: #2ACC8C;
+					background-color: #FDC623;
 					border-radius: 10rpx;
 				}
 			}

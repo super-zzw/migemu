@@ -4,96 +4,100 @@
 			<image src="../../static/fanlibg.png" mode=""></image>
 		</view>
 		<view class="block flex flex-column ">
-			<view class="block-title flex align-center justify-center">
-				 <text class="t">邀请流程</text>
-				 <text class="mpweixin one" @tap="navTo('./rule')">详细规则？</text>
-			</view>
-			<view class="flow flex justify-center align-center flex-column">
-				<view class="flow-row flex  align-center justify-between">
-					<view class="flow-block flex flex-column align-center justify-center">
-						<view class="icon flex align-center justify-center flex">
-							<image  src="../../static/icon1.png" mode=""></image>
+			<view class="top box">
+				<view class="block-title flex align-center justify-center">
+					 <text class="t">邀请返利流程</text>
+					 <text class="mpweixin one" @tap="navTo('./rule')">详细规则？</text>
+				</view>
+				<view class="flow flex justify-center align-center flex-column">
+					<view class="flow-row flex  align-center justify-between">
+						<view class="flow-block flex flex-column align-center justify-center">
+							<view class="icon flex align-center justify-center flex">
+								<image  src="../../static/icon1.png" mode=""></image>
+							</view>
+						</view>
+						<view class="flow-row-line flex align-center">
+							<view class="line" v-for="line in 9" :key="line.id"></view>
+							<view class="triangle"></view>
+						</view>
+						<view class="flow-block flex flex-column align-center justify-center">
+							<view class="icon flex align-center justify-center flex">
+								<image  src="../../static/icon2.png" mode=""></image>
+							</view>
 						</view>
 					</view>
-					<view class="flow-row-line flex align-center">
-						<view class="line" v-for="line in 9" :key="line.id"></view>
-						<view class="triangle"></view>
+					<view class="flow-row flex justify-between w">
+						<text>邀请好友</text>
+						<text>好友注册/登录</text>
 					</view>
-					<view class="flow-block flex flex-column align-center justify-center">
-						<view class="icon flex align-center justify-center flex">
-							<image  src="../../static/icon2.png" mode=""></image>
+					<view class="flow-line flow-row flex justify-between  ">
+						<view class="flow-row-line mid flex align-center flex-column">
+							<view class="triangle t"></view>
+							<view class="line t" v-for="line in 3" :key="line.id"></view>
+						</view>
+						<view class="flow-row-line mid flex align-center flex-column">
+							<view class="line t d" v-for="line in 3" :key="line.id"></view>
+							<view class="triangle b"></view>
+							
 						</view>
 					</view>
-				</view>
-				<view class="flow-row flex justify-between w">
-					<text>邀请好友</text>
-					<text>好友注册/登录</text>
-				</view>
-				<view class="flow-line flow-row flex justify-between  ">
-					<view class="flow-row-line mid flex align-center flex-column">
-						<view class="triangle t"></view>
-						<view class="line t" v-for="line in 3" :key="line.id"></view>
+					<view class="flow-row two flex  align-center justify-between">
+						<view class="flow-block flex flex-column align-center justify-center">
+							<view class="icon flex align-center justify-center flex">
+								<image  src="../../static/icon3.png" mode=""></image>
+							</view>
+						</view>
+						<view class="flow-row-line flex align-center">
+							<view class="line" v-for="line in 9" :key="line.id"></view>
+							<view class="triangle"></view>
+						</view>
+						<view class="flow-block flex flex-column align-center justify-center">
+							<view class="icon flex align-center justify-center flex">
+								<image  src="../../static/icon4.png" mode=""></image>
+							</view>
+						</view>
 					</view>
-					<view class="flow-row-line mid flex align-center flex-column">
-						<view class="line t d" v-for="line in 3" :key="line.id"></view>
-						<view class="triangle b"></view>
+					<view class="flow-row flex justify-between w h">
+						<text>获得返利</text>
+						<view class="twoRow flex flex-column align-center ">
+							<text>好友下单</text>
+							<text>购买对应课程</text>
+						</view>
 						
-					</view>
-				</view>
-				<view class="flow-row two flex  align-center justify-between">
-					<view class="flow-block flex flex-column align-center justify-center">
-						<view class="icon flex align-center justify-center flex">
-							<image  src="../../static/icon3.png" mode=""></image>
-						</view>
-					</view>
-					<view class="flow-row-line flex align-center">
-						<view class="line" v-for="line in 9" :key="line.id"></view>
-						<view class="triangle"></view>
-					</view>
-					<view class="flow-block flex flex-column align-center justify-center">
-						<view class="icon flex align-center justify-center flex">
-							<image  src="../../static/icon4.png" mode=""></image>
-						</view>
-					</view>
-				</view>
-				<view class="flow-row flex justify-between w h">
-					<text>获得返利</text>
-					<view class="twoRow flex flex-column align-center ">
-						<text>好友下单</text>
-						<text>购买对应课程</text>
 					</view>
 					
 				</view>
-				
-			</view>
+				</view>
+				<view class="bottom box">
+					<view class="block-title flex align-center justify-center">
+						<text class="t">我的返利</text>
+						<text class="mpweixin" @tap="navTo('./record')">邀请记录</text>
+					</view>
+					<view class="bottom-table flex ">
+						<view class="flex align-center flex-column justify-center">
+							<text class="tips">累计</text>
+							<text class="money">¥{{sumAmount || 0}}</text>
+						</view>
+						<view class="flex align-center flex-column justify-center">
+							<text class="tips">已提现</text>
+							<text class="money">¥{{withdrawAmount || 0}}</text>
+						</view>
+						<view class="flex align-center flex-column justify-center">
+							<text class="tips">冻结中</text>
+							<text class="money">¥{{freezeAmount || 0}}</text>
+						</view>
+					</view>
+					<view class="bottom-description flex align-center justify-between">
+						<view class="left flex align-items">
+							<text>可提现/元</text>
+							<text class="money">{{amount || 0}}</text>
+						</view>
+						<view class="right" @tap="navTo('./applyFor')">立即提现</view>
+					</view>
+				</view>
+		
 		</view>
-		<view class="block">
-			<view class="block-title flex align-center justify-center">
-				<text class="t">我的返利</text>
-				<text class="mpweixin" @tap="navTo('./record')">邀请记录</text>
-			</view>
-			<view class="bottom-table flex ">
-				<view class="flex align-center flex-column justify-center">
-					<text class="tips">累计</text>
-					<text class="money">¥{{sumAmount || 0}}</text>
-				</view>
-				<view class="flex align-center flex-column justify-center">
-					<text class="tips">已提现</text>
-					<text class="money">¥{{withdrawAmount || 0}}</text>
-				</view>
-				<view class="flex align-center flex-column justify-center">
-					<text class="tips">冻结中</text>
-					<text class="money">¥{{freezeAmount || 0}}</text>
-				</view>
-			</view>
-			<view class="bottom-description flex align-center justify-between">
-				<view class="left flex align-items">
-					<text>可提现/元</text>
-					<text class="money">{{amount || 0}}</text>
-				</view>
-				<view class="right" @tap="navTo('./applyFor')">立即提现</view>
-			</view>
-		</view>
+	
 		<view class="invite-outer flex align-center justify-center">
 			<button class="invite" @tap="showModal" data-target="Modal">立即邀请</button>
 		</view>
@@ -183,9 +187,9 @@
 		width: 686rpx;
 		height: 88rpx;
 		line-height: 88rpx;
-		color: #FFFFFF;
+		color: #303133;
 		font-size: 30rpx;
-		background-color: #2ACC8C;
+		background-color: #FDC623;
 		border-radius: 44rpx;
 	}
 	.content{
@@ -199,21 +203,31 @@
 				height: 100%;
 			}
 		}
+		
 		.block{
+			background: #FDC623;
+			padding: 58rpx 25rpx 64rpx 36rpx;
+			.box{
+				padding: 40rpx;
+				background: #fff;
+			}
+			.bottom{
+				margin-top: 40rpx;
+			}
 			.rule{
 				color: #909399;
 				font-size: 24rpx;
 				margin-top: 50rpx;
 			}
 			&:nth-of-type(2){margin-top: 0rpx;}
-			margin-top: 32rpx;
-			padding: 24rpx 40rpx;
+			// margin-top: 32rpx;
 			width: 100%;
-			background-color: #ffffff;
 			box-shadow:0px 4px 20px 0px rgba(42,204,140,0.07);
 			border-radius:8rpx;
 			.flow{
-				margin-top: 38rpx;
+				// padding-top: 38rpx;
+				// padding-bottom: 46rpx;
+				
 				.flow-row{
 					.twoRow{
 						text{margin-right: 0 !important;}
@@ -259,12 +273,12 @@
 					left: 50%;
 					transform: translateX(-50%);
 					&.mid{position: relative;left: 0;transform: none;&:nth-child(2){margin-top: 8rpx;}}
-					.line{width: 12rpx;height: 3rpx;background-color: #2ACC8C;&:not(:nth-child(9)){margin-right: 6rpx;}}
+					.line{width: 12rpx;height: 3rpx;background-color: #FDC623;&:not(:nth-child(9)){margin-right: 6rpx;}}
 					.line.t{margin-right: 0;margin-bottom: 6rpx;width: 3rpx; height: 12rpx;}
 					.line.t.d{&:nth-child(3){margin-bottom: 0;}}
-					.triangle.t{border-left: 12rpx solid transparent; border-bottom: 16rpx solid #2ACC8C;border-top: 0;border-right: 12rpx solid transparent;}
-					.triangle.b{border-left: 12rpx solid transparent; border-bottom: 0;border-top: 16rpx solid #2ACC8C;border-right: 12rpx solid transparent;}
-					.triangle{border-top: 12rpx solid transparent; border-bottom: 12rpx solid transparent; border-left: 16rpx solid #2ACC8C;}
+					.triangle.t{border-left: 12rpx solid transparent; border-bottom: 16rpx solid #FDC623;border-top: 0;border-right: 12rpx solid transparent;}
+					.triangle.b{border-left: 12rpx solid transparent; border-bottom: 0;border-top: 16rpx solid #FDC623;border-right: 12rpx solid transparent;}
+					.triangle{border-top: 12rpx solid transparent; border-bottom: 12rpx solid transparent; border-left: 16rpx solid #FDC623;}
 				}
 				.flow-block{
 					
@@ -284,10 +298,12 @@
 			.block-title{
 				height: 42rpx;
 				position: relative;
+				background-color: #ffffff;
+				margin-bottom: 32rpx;
 				.mpweixin{
 					position: absolute;
 					right: 0;
-					color: #2ACC8C;
+					color: #F72C2C;
 					font-size: 26rpx;
 					font-weight: normal;
 					&.one{
@@ -310,7 +326,7 @@
 						width: 100%;
 						height: 10rpx;
 						left: 0;
-						background-color: #B7F7DE;
+						background-color: #F78726;
 					}
 				}
 			}
@@ -321,7 +337,7 @@
 			}
 			.bottom-table{
 				height: 174rpx;
-				background-color: #EEFFF8;
+				background-color: #FFF5D6;
 				border-radius: 4rpx;
 				margin-top: 40rpx;
 				view{
@@ -333,7 +349,7 @@
 			.bottom-description{
 				width: 100%;
 				height: 62rpx;
-				margin: 38rpx 0 ;
+				margin-top: 38rpx;
 				.left{
 					align-items: center;
 					text{
@@ -343,7 +359,7 @@
 					.money{
 						margin-left: 20rpx;
 						font-size: 36rpx;
-						color: #2ACC8C;
+						color: #F72C2C;
 						font-weight: bold;
 					}
 				}
@@ -353,8 +369,8 @@
 					line-height: 62rpx;
 					text-align: center;
 					border-radius:34rpx;
-					border:2rpx solid #2ACC8C;
-					color: #2ACC8C;
+					border:2rpx solid #F72C2C;
+					color: #F72C2C;
 					font-size: 30rpx;
 					font-weight: bold;
 				}
@@ -382,10 +398,10 @@
 			.mBtn{
 				width: 378rpx;
 				height: 64rpx;
-				color: #fff;
+				color: #303133;
 				border-radius: 32rpx;
 				font-size: 28rpx;
-				background-color: #2ACC8C;
+				background-color: #FDC623;
 				line-height: 64rpx;
 				text-align: center;
 				margin: auto;

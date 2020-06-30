@@ -160,7 +160,7 @@
 		.s-mid{
 			image{width: 40rpx;height: 40rpx;margin-right: 10rpx;}
 			font-size: 28rpx;
-			color: #F95C25;
+			color: #F72C2C;
 		}
 		.s-right{
 			image{

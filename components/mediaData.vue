@@ -609,7 +609,7 @@ export default{
 				transform: scale(0.6, 0.6);
 			}
 			/deep/ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
-				background-color: #2acc8c!important;
+				background-color: #FDC623!important;
 			}
 			.zipVideoBoxText {
 			}

@@ -52,9 +52,9 @@
 		margin-right: 28rpx;
 	}
 	.typeItem.active{
-		background-color: #2ACC8C;
+		background-color: #FDC623;
 		color: #fff;
-		border-color: #2ACC8C;
+		border-color: #FDC623;
 	}
 }
 </style>

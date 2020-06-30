@@ -13,27 +13,9 @@
 				<view class="" v-if="notice1.length > 0">
 					<view class="tabContItem" v-for="(item1,index1) in notice1" :key="index1" @tap="toItem(item1)">
 						<view class="itemTime">
-							{{item1.createTime | dealTime}}
+							{{item1.createTime|dealTime }}
 						</view>
 						<view class="itemCont">
-							<!-- <view class="icTop" v-if="item1.type == 1">
-								<view class="icTopImgBox icTopImgBox1">
-									<image class="icTopImg" src="../../static/noticetype1.png" mode=""></image>
-								</view>
-								<text class="icTopText">上课提醒</text>
-							</view>
-							<view class="icTop" v-if="item1.type == 2">
-								<view class="icTopImgBox icTopImgBox2">
-									<image class="icTopImg" src="../../static/noticetype2.png" mode=""></image>
-								</view>
-								<text class="icTopText">作业提醒</text>
-							</view>
-							<view class="icTop" v-if="item1.type == 3">
-								<view class="icTopImgBox icTopImgBox3">
-									<image class="icTopImg" src="../../static/noticetype3.png" mode=""></image>
-								</view>
-								<text class="icTopText">签到提醒</text>
-							</view> -->
 							<view class="icTop">
 								<text class="icTopText" v-if="item1.type == 1">排课提醒</text>
 								<text class="icTopText" v-if="item1.type == 2">作业提醒</text>
@@ -46,20 +28,26 @@
 								<text class="icTopText" v-if="item1.type == 9">作业提醒</text>
 								<text class="icTopText" v-if="item1.type == 10">直播课室信息通知</text>
 							</view>
-							<view class="icClass">
-								{{item1.title}}
-							</view>
-							<!-- <view class="icLesson">
-								<text>{{item1.lessonTitle}}</text>
-							</view> -->
-							<view class="icBoo">
-								<view class="icBooLT">
+							<view class="icBottom">
+								<view class="icClass">
+									{{item1.title}}
+								</view>
+								<!-- <view class="icLesson">
+									<text>{{item1.lessonTitle}}</text>
+								</view> -->
+								<view class="icContent">
 									<text class="t1">{{item1.content}}</text>
 								</view>
-								<view class="icBooRT">
-									查看详情
+								<view class="TipBox">
+									<view class="leftTip">{{item1.tip}}</view>
+									<view class="detail" @tap="toItem(item1)">查看详情</view>
 								</view>
 							</view>
+							
+								<!-- <view class="icBooRT">
+									查看详情
+								</view> -->
+							
 						</view>
 					</view>
 					<moreList @change="getMore" v-if="hasMore" ></moreList>
@@ -72,7 +60,7 @@
 				<view class="" v-if="notice2.length > 0">
 					<view class="tabContItem" v-for="(item1,index1) in notice2"  :key="index1" @tap="toDetail(item1.id)">
 						<view class="itemTime">
-							{{item1.createTime | dealTime}}
+							{{item1.createTime|dealTime}}
 						</view>
 						<view class="itemCont" >
 							<view class="icTop">
@@ -81,7 +69,7 @@
 							<view class="icSubmit">
 								{{item1.subTitle}}
 							</view>
-							<view class="icBoo">
+							<view class="icBoo" @tap="toItem(item1)">
 								查看详情
 							</view>
 						</view>
@@ -113,8 +101,37 @@
 			return {
 				currentTab:0,
 				hasMore:true,
-				notice1:[],
-				notice2:[],
+				notice1:[
+					// {
+					// 	createTime:'2020-03-24',
+					// 	type:6,
+					// 	title:'Pioneers系列课程',
+					// 	content:'05/15课节《What color is it?》',
+					// 	tip:'老师已经布置对应作业'
+					// },
+					// {
+					// 	createTime:'2020-03-24',
+					// 	type:1,
+					// 	title:'Pioneers系列课程',
+					// 	content:'05/15课节《What color is it?》',
+					// 	tip:'老师已经布置对应作业'
+					// },
+					// {
+					// 	createTime:'2020-03-24',
+					// 	type:1,
+					// 	title:'Pioneers系列课程',
+					// 	content:'05/15课节《What color is it?》',
+					// 	tip:'老师已经布置对应作业'
+					// }
+				],
+				notice2:[
+					// {
+					// 	createTime:'2020-03-24',
+					// 	title:'Pioneers系列课程',
+					// 	subTitle:'这里是通知的内容文字这里是通知的内容文字这里是通知的内容文字这里是通知的内容文字这里是通知的内容文字这里是通知的内容…',
+						
+					// }
+				],
 				page:1,
 				userRole:-1,  //初始值
 				
@@ -224,7 +241,7 @@
 						this.notice1 = []
 						this.getRemind()
 					}else if(tab == 1){
-						this.notice2 = []
+						// this.notice2 = []
 						this.getNotice()
 					}
 					this.currentTab = tab;
@@ -259,6 +276,7 @@
 						apiName:"remindList",
 						data:{page:this.page}
 					})
+					
 					this.notice1 = this.notice1.concat(res.data.list);
 					this.hasMore = res.data.hasNextPage;
 				}catch(e){
@@ -310,8 +328,8 @@
 		}
 		.tabItem.active{
 			.text{
-				color: #2ACC8C;
-				border-bottom: 4rpx solid #2ACC8C;
+				color: #FDC623;
+				border-bottom: 4rpx solid #FDC623;
 			}
 		}
 	}
@@ -332,7 +350,7 @@
 			.itemCont{
 				background-color: #fff;
 				border-radius: 12rpx;
-				padding: 20rpx;
+				
 				margin-bottom: 20rpx;
 			}
 			.empty{
@@ -344,6 +362,8 @@
 				.icTop{
 					display: flex;
 					align-items: center;
+					padding: 20rpx 0 20rpx 30rpx;
+					border-bottom: 2rpx solid #F3F3F3;
 					.icTopImgBox{
 						width: 40rpx;
 						height: 40rpx;
@@ -361,60 +381,80 @@
 						background-color: #A92CF7;
 					}
 					.icTopImgBox3{
-						background-color: #2ACC8C;
+						background-color: #FDC623;
 					}
 					.icTopText{
-						margin-left: 10rpx;
-						color: #2ACC8C;
+						// margin-left: 10rpx;
+						// padding: 20rpx 0 20rpx 30rpx;
+						color: #303133;
 						font-size: 28rpx;
 						font-weight: bold;
 					}
 				}
-				.icClass{
-					margin-top: 40rpx;
-					color: #303133;
-					font-size: 32rpx;
-					font-weight: bold;
-				}
-				.icLesson{
-					display: flex;
-					color: #303133;
-					font-size: 32rpx;
-					font-weight: bold;
-					margin-top: 10rpx;
-				}
-				.icBoo{
-					margin-top: 36rpx;
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-					.icBooLT{
-						color: #F72C2C;
-						font-size: 28rpx;
+				.icBottom{
+					padding: 24rpx 32rpx 38rpx 30rpx;
+					.icClass{
+						// margin-top: 24rpx;
+						color: #303133;
+						font-size: 32rpx;
+						font-weight: bold;
 					}
-					.icBooLT1{
+					
+					.icContent{
+						margin-top: 10rpx;
 						.t1{
-							color: #F72C2C;
-							font-size: 36rpx;
-							font-weight: bold;
-						}
-						.t2{
-							color: #909399;
-							font-size: 28rpx;
-							margin-left: 10rpx;
+							color: #303133;
+							font-size: 32rpx;
+							font-weight: 600;
 						}
 					}
-					.icBooRT{
-						color: #2ACC8C;
-						font-size: 24rpx;
-						min-width: 110rpx;
-						text-align: center;
+					.TipBox{
+						margin-top: 30rpx;
+						display: flex;
+						justify-content: space-between;
+						.leftTip{
+							color: #F72C2C;
+							font-size:28rpx;
+							font-weight:400;
+							line-height:40rpx;
+						}
+						.detail{
+							color:#F78726 ;
+							font-size:24rpx;
+							font-weight:400;
+						}
 					}
 				}
+				
+				// .icBoo{
+				// 	margin-top: 36rpx;
+				// 	display: flex;
+				// 	align-items: center;
+				// 	justify-content: space-between;
+				// 	.icBooLT{
+				// 		color: #F72C2C;
+				// 		font-size: 28rpx;
+				// 	}
+				// 	.icBooLT1{
+						
+				// 		.t2{
+				// 			color: #909399;
+				// 			font-size: 28rpx;
+				// 			margin-left: 10rpx;
+				// 		}
+				// 	}
+				// 	.icBooRT{
+				// 		color: #2ACC8C;
+				// 		font-size: 24rpx;
+				// 		min-width: 110rpx;
+				// 		text-align: center;
+				// 	}
+				// }
 			}
 		}
 		.tc2{
 			.itemCont{
+				padding: 30rpx;
 				.icTop{
 					color: #303133;
 					font-size: 32rpx;
@@ -433,7 +473,7 @@
 				.icBoo{
 					margin-top: 18rpx;
 					text-align: right;
-					color: #2ACC8C;
+					color: #F78726;
 					font-size: 24rpx;
 				}
 			}

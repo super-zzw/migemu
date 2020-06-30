@@ -241,8 +241,8 @@ export default{
 	box-sizing: border-box;
 	.info{
 		padding: 32rpx;
-		padding-top: 2rpx;
-		background-color: #F0FCF8;
+		padding-bottom: 2rpx;
+		background-color: #F6F6F6;
 	}
 	.checkData{
 		padding: 40rpx 106rpx 0 106rpx;
@@ -282,7 +282,7 @@ export default{
 				right: 0;
 				top: 0;
 				line-height: 80rpx;
-				color: #2ACC8C;
+				color: #303133;
 				width: 116rpx;
 				text-align: center;
 				font-size: 26rpx;
@@ -309,19 +309,25 @@ export default{
 			display: flex;
 			align-items: center;
 			padding-left: 32rpx;
+			height: 52rpx;
+			checkbox-group{
+				width: 52rpx;
+			}
 			.round{
 				transform: scale(0.7,0.7);
 			}
 			/deep/ checkbox .wx-checkbox-input.wx-checkbox-input-checked{
-				background-color: #2ACC8C!important;
+				background-color: #FDC623!important;
+				
 			}
 			.plText{
+				
 				margin-left: 4rpx;
 				font-size: 28rpx;
 				color: #C0C4CC;
-				.plTextLink{
-					color: #2ACC8C;
-				}
+				// .plTextLink{
+				// 	color: #C0C4CC;
+				// }
 			}
 		}
 		.opration{
@@ -342,7 +348,7 @@ export default{
 			}
 			.oprBtn{
 				flex: 1;
-				background-color: #2ACC8C;
+				background-color: #FDC623;
 				color: #fff;
 				text-align: center;
 				line-height: 96rpx;
@@ -362,13 +368,13 @@ export default{
 			color: #8799A3;
 		}
 		.sure{
-			color: #2ACC8C;
+			color: #FDC623;
 		}
 		.padding-xl{
 			padding: 32rpx;
 			background-color: #fff;
 			/deep/ radio .wx-radio-input.wx-radio-input-checked{
-				background-color: #2ACC8C!important;
+				background-color: #FDC623!important;
 			}
 		}
 	}

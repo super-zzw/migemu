@@ -433,7 +433,7 @@
 			transition: all .3s linear;
 			&.active{
 				font-size: bold;
-				color: #2ACC8C;
+				color: #FDC623;
 				&::after{
 					content: "";
 					position: absolute;
@@ -441,7 +441,7 @@
 					left: 0;
 					width: 100%;
 					height: 4rpx;
-					background-color: #2ACC8C;
+					background-color: #FDC623;
 				}
 			}
 		}
@@ -529,7 +529,7 @@
 							margin-right: 50rpx;
 							text{
 								font-size: 40rpx;
-								color: #2ACC8C;
+								color:#FDC623;
 								margin-right: 10rpx;
 								font-weight: bold;
 							}
@@ -653,7 +653,7 @@
 						margin-right: 30rpx;
 						text{
 							font-size: 40rpx;
-							color: #2ACC8C;
+							color: #FDC623;
 							margin-right: 10rpx;
 						}
 					}

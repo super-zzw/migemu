@@ -148,7 +148,7 @@ export default{
 					background-color: #C0C4CC;
 				}
 				.tcpL3Text.t2{
-					background-color: #2ACC8C;
+					background-color: #FDC623;
 				}
 				.tcpL3Text.t3{
 					background-color: #F72C2C;
@@ -195,7 +195,7 @@ export default{
 				font-size: 32rpx;
 			}
 			.boxTopBtn1{
-				background-color: #2ACC8C;
+				background-color: #FDC623;
 				text-align: center;
 				height: 80rpx;
 				line-height: 80rpx;
@@ -204,12 +204,12 @@ export default{
 				margin-top: 20rpx;
 			}
 			.boxTopBtn2{
-				border: 2rpx solid #2ACC8C;
+				border: 2rpx solid #FDC623;
 				text-align: center;
 				height: 80rpx;
 				line-height: 80rpx;
 				border-radius: 32rpx;
-				color: #2ACC8C;
+				color: #FDC623;
 				box-sizing: border-box;
 				margin-top: 40rpx;
 			}

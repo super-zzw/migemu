@@ -322,7 +322,7 @@
 		.headBg{
 			width: 100%;
 			height: 284rpx;
-			background:linear-gradient(180deg,rgba(42,204,140,1) 0%,rgba(42,204,140,1) 40%,rgba(67,213,155,0) 100%);
+			background:#FDC623;
 			position: absolute;
 		}
 		.block{
@@ -381,7 +381,7 @@
 				.bar{
 					width: 40%;
 					height: 100%;
-					background-color: #2ACC8C;
+					background-color: #FDC623;
 					border-radius: 10rpx;
 				}
 			}
@@ -423,7 +423,7 @@
 				transform: translateY(-50%);
 				width: 10rpx;
 				height: 40rpx;
-				background:rgba(42,204,140,1);
+				background:#FDC623;
 				border-radius:0px 200px 200px 0px;
 			}
 		}
@@ -561,7 +561,7 @@
 					width: 378rpx;
 					height: 64rpx;
 					line-height: 64rpx;
-					background-color: #2ACC8C;
+					background-color: #FDC623;
 					border-radius: 32rpx;
 					color: #FFFFFF;
 					margin: 80rpx 0 40rpx ;
@@ -585,7 +585,7 @@
 				width: 378rpx;
 				height: 64rpx;
 				line-height: 64rpx;
-				background-color: #2ACC8C;
+				background-color: #FDC623;
 				border-radius: 32rpx;
 				color: #FFFFFF;
 			}
@@ -600,7 +600,7 @@
 					color: #FFFFFF;
 					border-radius: 32rpx;
 					&.green{
-						background-color: #2ACC8C;
+						background-color: #FDC623;
 					}
 					&.gray{
 						background-color: #C0C4CC;

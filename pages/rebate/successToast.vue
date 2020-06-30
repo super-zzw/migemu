@@ -54,9 +54,9 @@
 	}
 	.pfBtn2{
 		margin-top: 38rpx;
-		border: 2rpx solid #2ACC8C;
+		border: 2rpx solid #FDC623;
 		border-radius: 44rpx;
-		color: #2ACC8C;
+		color: #FDC623;
 		text-align: center;
 		font-size: 32rpx;
 		line-height: 84rpx;

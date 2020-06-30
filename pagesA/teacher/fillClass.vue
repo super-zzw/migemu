@@ -243,7 +243,7 @@ export default {
 			width: 686rpx;
 			height: 88rpx;
 			border-radius: 44rpx;
-			background-color: #2ACC8C;
+			background-color: #FDC623;
 			margin-top: 26rpx;
 			text-align: center;
 			line-height: 88rpx;

@@ -522,7 +522,7 @@ export default{
 			width: 686rpx;
 			height: 88rpx;
 			border-radius: 44rpx;
-			background-color: #2ACC8C;
+			background-color: #FDC623;
 			margin-top: 26rpx;
 			text-align: center;
 			line-height: 88rpx;
@@ -542,13 +542,13 @@ export default{
 			color: #8799A3;
 		}
 		.sure{
-			color: #2ACC8C;
+			color: #FDC623;
 		}
 		.padding-xl{
 			padding: 32rpx;
 			background-color: #fff;
 			/deep/ checkbox .wx-checkbox-input.wx-checkbox-input-checked{
-				background-color: #2ACC8C!important;
+				background-color: #FDC623!important;
 			}
 		}
 	}

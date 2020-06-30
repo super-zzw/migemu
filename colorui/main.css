@@ -2382,7 +2382,9 @@ button.cuIcon.lg {
 	width: 100%;
 	text-align: right;
 }
-
+/* uni-picker .uni-picker-action.uni-picker-action-confirm{  
+        color: #F78726 !important;  
+} */
 .cu-form-group picker::after {
 	font-family: cuIcon;
 	display: block;

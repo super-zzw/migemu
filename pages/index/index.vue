@@ -8,16 +8,37 @@
 			</swiper>
 		</view>
 		<view class="cont">
+			<view class="navBox">
+				<view class="navItem">
+					<navigator url="./cooperation" hover-class='none'>
+						<image src="../../static/image/nav1.png" class="navImg"></image>
+						</navigator>
+					<text>共建合作学堂</text>
+				</view>
+				<view class="navItem">
+					<navigator url="./shiting" hover-class='none'>
+						<image src="../../static/image/nav2.png" class="navImg"></image>
+					</navigator>
+					
+					<text>免费体验课程</text>
+				</view>
+				<view class="navItem">
+					<navigator url="./lessonSystem" hover-class='none'>
+						<image src="../../static/image/nav2.png" class="navImg"></image>
+					</navigator>
+					<text>了解课程体系</text>
+				</view>
+			</view>
 			<view class="listTitle">
 				<view class="lt1">
 					课程列表 
 				</view>
-				<view class="lt2" @tap="toPath('/pages/index/list')">
+				<!-- <view class="lt2" @tap="toPath('/pages/index/list')">
 					<text class="lt2Text">更多</text> 
 					<image class="lt2Img" src="../../static/more.png" mode="widthFix"></image>
-				</view>
+				</view> -->
 			</view>
-			<courseTag :types="types" :currentType="currentType" @change="tapTag"></courseTag>
+			<!-- <courseTag :types="types" :currentType="currentType" @change="tapTag"></courseTag> -->
 			<view class="list">
 				<view v-for="(item,index) in data_list" :key="index">
 					<courseItem :dataItem="item"></courseItem>
@@ -154,7 +175,8 @@
 						return
 						break;
 				}
-			}
+			},
+		
 		}
 	}
 </script>
@@ -175,33 +197,47 @@
 		}
 		.cont{
 			padding: 32rpx;
+			.navBox{
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				margin-bottom: 40rpx;
+				.navItem{
+					// width: 168rpx;
+					// padding: 0 16rpx;
+					display: flex;
+					align-items: center;
+					flex-direction: column;
+					// height: 152rpx;
+					
+					.navImg{
+						width: 96rpx;
+						height: 96rpx;
+						margin-bottom:16rpx ;
+					}
+					text{
+						font-size: 28rpx;
+						font-weight:500;
+						color:rgba(96,98,102,1);
+						line-height:40rpx;
+					}
+				}
+			}
 			.listTitle{
 				width: 100%;
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				padding-bottom: 16rpx;
+				// padding-bottom: 16rpx;
 				.lt1{
 					color: #303133;
-					font-size: 34rpx;
+					font-size: 32rpx;
+					font-weight:600;
+					margin-bottom: 36rpx;
 				}
-				.lt2{
-					display: flex;
-					align-items: center;
-					.lt2Text{
-						color: #C0C4CC;
-						font-size: 28rpx;
-					}
-					.lt2Img{
-						margin-left: 10rpx;
-						width: 18rpx;
-						height: 36rpx;
-					}
-				}
+				
 			}
-			.list{
-				margin-top: -10rpx;
-			}
+		
 		}
 	}
 </style>

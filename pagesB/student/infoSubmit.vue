@@ -145,7 +145,7 @@ import Utils from "../../utils/method.js";
 	.btn{
 		width:686rpx;
 		height: 88rpx;
-		background-color: #2ACC8C;
+		background-color: #FDC623;
 		border-radius: 44rpx;
 		line-height: 88rpx;
 		color: #FFFFFF;
@@ -176,9 +176,9 @@ import Utils from "../../utils/method.js";
 			margin-right: 30rpx;
 		}
 		.typeItem.active{
-			background-color: #2ACC8C;
+			background-color: #FDC623;
 			color: #fff;
-			border-color: #2ACC8C;
+			border-color: #FDC623;
 		}
 	}
 </style>

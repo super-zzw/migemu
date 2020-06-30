@@ -89,7 +89,7 @@ export default{
 		exitLogin(){
 			uni.showModal({
 				title: "确定要退出登录吗?",
-				confirmColor: '#2ACC8C',
+				confirmColor: '#FDC623',
 				success({confirm}) {
 					if(confirm){
 						utils.rmData();
@@ -174,11 +174,11 @@ export default{
 	}
 	.setBtn{
 		margin-top: 88rpx;
-		border: 2rpx solid #2ACC8C;
+		border: 2rpx solid #C0C4CC;
 		border-radius: 44rpx;
 		line-height: 84rpx;
 		text-align: center;
-		color: #2ACC8C;
+		color: #909399;
 		font-size: 32rpx;
 		font-weight: bold;
 	}

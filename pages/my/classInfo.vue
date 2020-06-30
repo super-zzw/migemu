@@ -70,8 +70,8 @@
 					<view class="tcItem tc2Item" v-for="(item,index) in  wateDetail" :key="index" >
 						<view class="tc2T1">
 							<text class="tc2Name">{{item.courseName}}</text>
-							<text class="tc2Status" v-if="item.studyType == 0">学习中</text>
-							<text class="tc2Status" v-if="item.studyType == 1">已完成</text>
+							<text class="tc2Status status1" v-if="item.studyType == 0">学习中</text>
+							<text class="tc2Status status2" v-if="item.studyType == 1">已完成</text>
 						</view>
 						<view class="tc2T2">
 							课程总课节：{{item.sumLesson}}
@@ -215,7 +215,7 @@ export default{
 	min-height: 100vh;
 	background-color: #fff;
 	.banner{
-		background-color: #2ACC8C;
+		background-color:#FDC623;
 		padding: 40rpx 30rpx 40rpx 60rpx;
 		display: flex;
 		justify-content: space-between;
@@ -225,11 +225,11 @@ export default{
 			text-align: center;
 			.bItemData{
 				font-weight: bold;
-				color: #fff;
+				color: #303133;
 				font-size: 40rpx;
 			}
 			.bItemLabel{
-				color: #D2FAEA;
+				color: #303133;
 				font-size: 28rpx;
 				margin-top: 12rpx;
 			}
@@ -260,8 +260,8 @@ export default{
 				box-sizing: border-box;
 			}
 			.tabItem.active{
-				color: #2ACC8C;
-				border-bottom: 4rpx solid #2ACC8C;
+				color: #FDC623;
+				border-bottom: 4rpx solid #FDC623;
 			}
 		}
 		.tabCont{
@@ -306,7 +306,7 @@ export default{
 							background-color: #C0C4CC;
 						}
 						.tc1Top21{
-							background-color: #2ACC8C;
+							background-color: #FDC623;
 						}
 					}
 					.tc1Center{
@@ -340,7 +340,13 @@ export default{
 						padding-right: 10rpx;
 						border-radius: 8rpx;
 						margin-left: 20rpx;
-						background-color: #2ACC8C;
+						// background-color: #2ACC8C;
+					}
+					.status1{
+						background-color: #F72C2C;
+					}
+					.status2{
+						background-color: #F78726;
 					}
 				}
 				.tc2T2{
@@ -362,7 +368,7 @@ export default{
 						left: 0;
 						top: 0;
 						height: 100%;
-						background-color: #2ACC8C;
+						background-color: #FDC623;
 						border-radius: 10rpx;
 					}
 				}

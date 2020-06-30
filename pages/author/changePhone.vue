@@ -238,11 +238,11 @@ export default{
 			font-size: 28rpx;
 			position: absolute;
 			right: 0;
-			color: #2ACC8C;
+			color: #FDC623;
 		}
 	}
 	.greenBtn{
-		background-color: #2ACC8C;
+		background-color: #FDC623;
 		color: #FFFFFF;
 		margin:82rpx 0 30rpx 0;
 	}

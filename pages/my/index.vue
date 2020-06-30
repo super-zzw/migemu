@@ -40,7 +40,7 @@
 							<swiper-item v-for="(list, index) in course" :key="list.id" @tap="navTo(`./lessonsDetail?acid=${list.arrangeCourseId}&aclid=${list.arrangeCourseLessonId}&lid=${list.lessonId}`)">
 								<view class="swiper-item">
 									<view class="calendar-description">{{ list.lessonsName }}</view>
-									<view class="calendar-time">{{ list.classInfo }}</view>
+									<view class="calendar-time">课室信息：{{ list.classRoomInfo }}</view>
 									<view class="calendar-time flex align-center">
 										上课时间：{{ list.startTime }}
 										<text class="grayBg">未开始</text>
@@ -90,7 +90,7 @@
 		</view>
 		<view class="block nav flex " v-if="userInfo.userType === 1">
 			<template v-for="(item, index) in teacherNavList" >
-				<navigator class="col flex align-center justify-center flex-column" :key="item.id"   :url="item.to" hover-class="none">
+				<navigator class="col2 flex align-center justify-center flex-column" :key="item.id"   :url="item.to" hover-class="none">
 					<image :src="item.src"></image>
 					<text>{{ item.text }}</text>
 				</navigator>
@@ -123,40 +123,36 @@ export default {
 				},
 				{
 					src: require('../../static/my/icon2.png'),
-					text: '我的作业',
-					to: '/pagesB/student/task'
-				},
-				{
-					src: require('../../static/my/icon3.png'),
 					text: '我的课时',
 					to: './classInfo'
 				},
 				{
-					src: require('../../static/my/icon4.png'),
+					src: require('../../static/my/icon3.png'),
 					text: '邀请返利',
 					to: '../rebate/index'
 				},
 				{
-					src: require('../../static/my/icon5.png'),
+					src: require('../../static/my/icon4.png'),
 					text: '我的积分',
 					to: './myIntegral'
 				},
 				{
-					src: require('../../static/my/icon6.png'),
+					src: require('../../static/my/icon5.png'),
 					text: '如何上课',
-					to: '../index/article?id=4'       
+					to: '../index/article?id=4'
 				},
 				{
-					src: require('../../static/my/icon7.png'),
+					src: require('../../static/my/icon6.png'),
 					text: '联系客服',
 					to: '',
 					isBtn:true
 				},
 				{
-					src: require('../../static/my/icon8.png'),
-					text: '关于我们',
-					to: '../index/article?id=5'   
-				}
+					src: require('../../static/my/icon7.png'),
+					text: '关于米格姆',
+					to: '../index/article?id=5',
+					
+				},
 			],
 			teacherNavList: [
 				{
@@ -169,18 +165,29 @@ export default {
 					text: '课后管理',
 					to: '/pagesA/teacher/afterClass'
 				},
+				// {
+				// 	src: require('../../static/teacher/icon3.png'),
+				// 	text: '作业管理',
+				// 	to: '/pagesA/teacher/task'
+				// },
 				{
 					src: require('../../static/teacher/icon3.png'),
-					text: '作业管理',
-					to: '/pagesA/teacher/task'
-				},
-				{
-					src: require('../../static/teacher/icon4.png'),
 					text: '课时统计',
 					to: '/pagesA/teacher/statisticsClass'
 				}
 			],
-			course: [],
+			course: [
+				{
+					lessonsName:'05/15课节《What color is it?',
+					classRoomInfo:'Tony老师家翻斗大街二栋二号',
+					startTime:'2020-03-23'
+				},
+				{
+					lessonsName:'05/15课节《What color is it?',
+					classRoomInfo:'Tony老师家翻斗大街二栋二号',
+					startTime:'2020-03-23'
+				}
+			],
 			teacherCourse: [
 				{
 					textData: [
@@ -220,7 +227,10 @@ export default {
 		if(this.isLogin){ // 如果是学生，年龄会变，需要重新计算 
 			await this.getUserInfo();
 			await this.getLessonsList();
-			this.studentAge = Utils.getOld(this.userInfo.birthday);
+			if(this.getUserInfo.userType==2){
+				this.studentAge = Utils.getOld(this.userInfo.birthday);
+			}
+			
 		}
 	},
 	methods: {
@@ -322,7 +332,7 @@ export default {
 			height: 376rpx;
 		}
 		.swiper-item {
-			background-color: #f0fcf8;
+			background-color:#F6F6F6;
 			border-radius: 8rpx;
 			padding: 30rpx;
 			margin-bottom: 30rpx;
@@ -432,7 +442,7 @@ export default {
 	height: 200rpx;
 	width: 100%;
 	padding: 0 32rpx;
-	background-color: #2acc8c;
+	background-color: #FDC623;
 	.left {
 		.avaterUrl {
 			width: 88rpx;
@@ -441,7 +451,7 @@ export default {
 		}
 		.user-info {
 			margin-left: 20rpx;
-			color: #ffffff;
+			color: #303133;
 			.user-name {
 				text {
 					font-size: 32rpx;
@@ -456,9 +466,10 @@ export default {
 			.identity {
 				font-size: 24rpx;
 				padding: 4rpx 10rpx;
-				background: rgba(253, 198, 35, 1);
+				background: #F72C2C;
 				line-height: 40rpx;
 				text-align: center;
+				color: #fff;
 				border-radius: 200rpx 0px 200rpx 200rpx;
 				margin-left: 12rpx;
 				font-weight: 400;
@@ -514,13 +525,25 @@ export default {
 }
 .nav {
 	flex-wrap: wrap;
+	// flex-direction: row;
 	.col {
-		flex: 1 0 25%;
+		// flex: 1 0 25%;
+		width: 25%;
 		height: 170rpx;
 		image {
 			width: 72rpx;
 			height: 72rpx;
 			margin-bottom: 20rpx;
+		}
+	}
+	.col2{
+		width: 33.33%;
+	
+		height: 182rpx;
+		image {
+			width: 72rpx;
+			height: 72rpx;
+			margin-bottom: 10rpx;
 		}
 	}
 	button {

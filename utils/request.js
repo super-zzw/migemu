@@ -4,11 +4,11 @@ var test = false;
 var _baseUrl = '';
 if (test) {
 	// _baseUrl = 'http://192.168.1.25:9093/api';  //测试地址日强
-	_baseUrl = 'http://192.168.1.17:9093/api';  //测试地址朝亮 
+	// _baseUrl = 'http://192.168.1.17:9093/api';  //测试地址朝亮 
 	// _baseUrl = 'http://192.168.1.39:9093/api';  //内网
-	// _baseUrl = 'http://hyjy-api.dev.gzcyou.com/api';  //内网穿透地址
+	_baseUrl = 'http://hyjy-api.dev.gzcyou.com/api';  //内网穿透地址
 } else {
-	_baseUrl = 'https://api.gdhyart.com/api';  //正式地址
+	_baseUrl = 'https://api.migmkids.com/api';  //正式地址
 }
 var baseUrl = _baseUrl;
 // 请求loading交给页面处理

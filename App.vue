@@ -55,8 +55,8 @@
 	.bold{font-weight: bold;}
 	.btn{width: 540rpx;height: 80rpx;;line-height: 80rpx;border-radius: 44rpx;font-size: 32rpx;font-weight: bold;}
 	.grayIcon{border-radius:8rpx;border:2rpx solid #C0C4CC;padding: 4rpx 8rpx;color: #C0C4CC;font-size: 24rpx;margin-left: 20rpx;}
-	.greenIcon{border-radius:8rpx;border:2rpx solid #2ACC8C;padding: 4rpx 8rpx;color: #2ACC8C;font-size: 24rpx;margin-left: 20rpx;}
-	.greenBg{padding: 6rpx 14rpx;font-size: 28rpx;color: #FFFFFF;background-color: #2ACC8C;border-radius: 8rpx;}
+	.greenIcon{border-radius:8rpx;border:2rpx solid #FDC623;padding: 4rpx 8rpx;color: #FDC623;font-size: 24rpx;margin-left: 20rpx;}
+	.greenBg{padding: 6rpx 14rpx;font-size: 28rpx;color: #FFFFFF;background-color: #FDC623;border-radius: 8rpx;}
 	.grayBg{padding: 6rpx 14rpx;font-size: 28rpx;color: #FFFFFF;background-color: #C0C4CC;border-radius: 8rpx;}
 	view,
 	scroll-view,
@@ -84,4 +84,20 @@
 	video {
 		box-sizing: border-box;
 	}
+	uni-picker .uni-picker-action.uni-picker-action-confirm{color: #FF725C;}
+	button:after{
+		border: none;
+	}
+	 checkbox .wx-checkbox-input {
+		 border-radius: 50% !important;
+		  color: #ffffff !important;
+		}
+		checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+		  color: #fff;
+		  background: #550000;
+		  border: 4upx solid #010155;
+		}
+		.wx-checkbox-input.wx-checkbox-input-checked {
+		  border: none !important;
+		}
 </style>

@@ -7,18 +7,54 @@
 			}
 		},
 		{
-			"path": "pages/index/list",
+			"path": "pages/my/index",
 			"style": {
-				"navigationBarTitleText": "更多课程",
+				"navigationBarTitleText": "",
+				"navigationBarBackgroundColor": "#FDC623",
 				"enablePullDownRefresh": true
 			}
 		},
+		
 		{
 			"path": "pages/index/good",
 			"style": {
 				"navigationBarTitleText": "课程详情"
 			}
 		},
+		{
+			"path": "pages/index/cooperation",
+			"style": {
+				// "navigationBarTitleText": "合作学堂"
+			}
+		},
+		{
+			"path": "pages/index/shiting",
+			"style": {
+				// "navigationBarTitleText": "合作学堂"
+			}
+		},
+		{
+			"path": "pages/index/lessonSystem",
+			"style": {
+				"navigationBarTitleText": "课程体系"
+			}
+		},
+		{
+			"path": "pages/notice/index",
+			"style": {
+				"navigationBarTitleText": "消息通知",
+				"enablePullDownRefresh": true
+			}
+		},
+		
+		{
+			"path": "pages/index/list",
+			"style": {
+				"navigationBarTitleText": "更多课程",
+				"enablePullDownRefresh": true
+			}
+		},
+		
 		{
 			"path": "pages/index/article",
 			"style": {
@@ -92,19 +128,12 @@
 				"enablePullDownRefresh": true
 			}
 		},
-		{
-			"path": "pages/my/index",
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationBarBackgroundColor": "#2ACC8C",
-				"enablePullDownRefresh": true
-			}
-		},
+		
 		{
 			"path": "pages/my/overview",
 			"style": {
 				"navigationBarTitleText": "课程概况",
-				"navigationBarBackgroundColor": "#2ACC8C",
+				"navigationBarBackgroundColor": "#FDC623",
 				"navigationBarTextStyle": "white"
 			}
 		},
@@ -112,7 +141,7 @@
 			"path": "pages/my/lessonsDetail",
 			"style": {
 				"navigationBarTitleText": "课节概况",
-				"navigationBarBackgroundColor":"#2ACC8C",
+				"navigationBarBackgroundColor":"#FDC623",
 				"navigationBarTextStyle":"white"
 			}
 		},
@@ -188,12 +217,6 @@
 				"navigationBarTitleText": "排行榜"
 			}
 		}, {
-			"path": "pages/notice/index",
-			"style": {
-				"navigationBarTitleText": "消息通知",
-				"enablePullDownRefresh": true
-			}
-		},{
 			"path": "pages/notice/detail",
 			"style": {
 				"navigationBarTitleText": "通知详情"
@@ -213,8 +236,8 @@
 			"style": {
 				"navigationBarTitleText": "支付失败"
 			}
-		}
-	],
+		}  
+    ],
 	"subPackages": [
 		{
 			"root": "pagesA",
@@ -279,7 +302,7 @@
 					"path": "teacher/teacherLessonsDetail",
 					"style": {
 						"navigationBarTitleText": "课节详情",
-						"navigationBarBackgroundColor":"#2ACC8C",
+						"navigationBarBackgroundColor":"#FDC623",
 						"navigationBarTextStyle":"white"
 					}
 				}
@@ -310,19 +333,19 @@
 				{
 					"path": "student/infoSubmit",
 					"style": {
-						"navigationBarTitleText": "鹦鹉学唱"
+						"navigationBarTitleText": "米格姆英语+"
 					}
 				},
 				{
 					"path": "student/infoSuToast",
 					"style": {
-						"navigationBarTitleText": "鹦鹉学唱"
+						"navigationBarTitleText": "米格姆英语+"
 					}
 				},
 				{
 					"path": "student/infoFaToast",
 					"style": {
-						"navigationBarTitleText": "鹦鹉学唱"
+						"navigationBarTitleText": "米格姆英语+"
 					}
 				}
 			]
@@ -340,37 +363,37 @@
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "鹦鹉学唱",
+		"navigationBarTitleText": "米格姆英语课堂",
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF"
 	},
 	"tabBar": {
 		"color": "#909399",
-		"selectedColor": "#2ACC8C",
+		"selectedColor": "#303133",
 		"borderStyle": "black",
 		"backgroundColor": "#FFFFFF",
 		"list": [{
 				"pagePath": "pages/index/index",
-				"iconPath": "static/home1.png",
-				"selectedIconPath": "static/home2.png",
+				"iconPath": "static/image/index.png",
+				"selectedIconPath": "static/image/index_active.png",
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/rank/index",
-				"iconPath": "static/rank1.png",
-				"selectedIconPath": "static/rank2.png",
-				"text": "排行榜"
-			},
-			{
 				"pagePath": "pages/notice/index",
-				"iconPath": "static/notice1.png",
-				"selectedIconPath": "static/notice2.png",
+				"iconPath": "static/image/message.png",
+				"selectedIconPath": "static/image/message_active.png",
 				"text": "消息通知"
 			},
+			// {
+			// 	"pagePath": "pages/notice/index",
+			// 	"iconPath": "static/notice1.png",
+			// 	"selectedIconPath": "static/notice2.png",
+			// 	"text": "消息通知"
+			// },
 			{
 				"pagePath": "pages/my/index",
-				"iconPath": "static/my1.png",
-				"selectedIconPath": "static/my2.png",
+				"iconPath": "static/image/mine.png",
+				"selectedIconPath": "static/image/mine_active.png",
 				"text": "我的"
 			}
 		]

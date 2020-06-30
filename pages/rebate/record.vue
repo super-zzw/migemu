@@ -86,9 +86,10 @@
 		background-color: #F9FAFB;
 	}
 	.top{
-		background: url(../../static/yqjlbg.png) no-repeat left top/100%;
+		background:url('../../static/yqjlbg.png') no-repeat;
 		width: 100%;
 		height: 280rpx;
+		background-size: cover;
 		h2{
 			font-size: 48rpx;
 			color: #FDC623;
@@ -101,7 +102,7 @@
 		}
 	}
 	.item{
-		background-color: #2CC98A;
+		background-color: #FAC429;
 		width: 720rpx;
 		height: 32rpx;
 		border-radius: 16rpx;
@@ -121,7 +122,7 @@
 			padding: 16rpx 23rpx;
 			font-size: 28rpx;
 			color: #FFFFFF;
-			background: #2ACC8C;
+			background: #FAC429;
 			margin-right: 2rpx;
 			flex-basis: 24.9%;
 		}

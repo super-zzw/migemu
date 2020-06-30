@@ -299,7 +299,7 @@ export default{
 	//homeShare
 	homeShare(imageUrl){
 		return {
-			title:"数字化沉浸式艺术教育倡领品牌",
+			title:"不只教英文的中外国际双师课堂",
 			path:"/pages/index/index",
 			imageUrl:imageUrl
 		}

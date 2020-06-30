@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<web-view src="http://migmkids.com/cooperation" ></web-view>
+		<web-view src="https://migmkids.com/cooperation" ></web-view>
 	</view>
 </template>
 

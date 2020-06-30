@@ -1,5 +1,5 @@
 <template>
-	<web-view src="http://migmkids.com/" ></web-view>
+	<web-view src="https://migmkids.com/" ></web-view>
 </template>
 
 <script>

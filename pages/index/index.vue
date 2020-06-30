@@ -16,9 +16,12 @@
 					<text>共建合作学堂</text>
 				</view>
 				<view class="navItem">
-					<navigator url="./shiting" hover-class='none'>
+					<!-- <navigator url="./shiting" hover-class='none'> -->
+						<!-- <image src="../../static/image/nav2.png" class="navImg"></image> -->
+					<!-- </navigator> -->
+					<view url="./shiting" hover-class='none'>
 						<image src="../../static/image/nav2.png" class="navImg"></image>
-					</navigator>
+					</view>
 					
 					<text>免费体验课程</text>
 				</view>

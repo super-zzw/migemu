@@ -1,6 +1,7 @@
 <template>
 	<view class="content">
-		<view class="top flex flex-column justify-center align-center">
+		<view class="top flex flex-column justify-center align-center" >
+			<image src="../../static/yqjlbg.png" class="bg"></image>
 			<h2>{{total}}</h2>
 			<text>位好友已接受邀请购买课程</text>
 		</view>
@@ -44,7 +45,7 @@
 		},
 		data(){
 			return{
-				textArr:['我的好友','订单金额','订单时间','返利金额'],
+				textArr:['我的好友','课程金额','购买时间','返利金额'],
 				dataList:[],
 				hasMore:true,
 				page:1,
@@ -82,23 +83,33 @@
 </script>
 
 <style lang="scss" scoped>
-	page{
-		background-color: #F9FAFB;
+	.content{
+		background-color: #FFF5D6;
 	}
 	.top{
-		background:url('../../static/yqjlbg.png') no-repeat;
 		width: 100%;
 		height: 280rpx;
-		background-size: cover;
+		// background-size: cover;
+		position: relative;
+		.bg{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
 		h2{
-			font-size: 48rpx;
-			color: #FDC623;
+			font-size: 52rpx;
+			color: #F72C2C;
+			font-family:Bebas;
 			margin-bottom: 16rpx;
+			font-weight: 600;
 		}
 		text{
 			font-size: 26rpx;
-			color: #FFFFFF;
-			margin-left: 238rpx;
+			color:#303133;
+			margin-left: 270rpx;
+			font-weight: 550;
 		}
 	}
 	.item{
@@ -150,7 +161,7 @@
 		top: 0;
 		width: 100%;
 		height: 12rpx;
-		background: rgba(44, 201, 138, 0.19);
+		background: #FAC429;
 		filter: blur(4px);
 	}
 </style>

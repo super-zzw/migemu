@@ -148,7 +148,7 @@ import Utils from "../../utils/method.js";
 		background-color: #FDC623;
 		border-radius: 44rpx;
 		line-height: 88rpx;
-		color: #FFFFFF;
+		color:#303133;
 		font-size: 32rpx;
 		margin-top: 60rpx;
 	}
@@ -177,7 +177,7 @@ import Utils from "../../utils/method.js";
 		}
 		.typeItem.active{
 			background-color: #FDC623;
-			color: #fff;
+			color:#303133;
 			border-color: #FDC623;
 		}
 	}

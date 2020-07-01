@@ -40,7 +40,8 @@
 							<swiper-item v-for="(list, index) in course" :key="list.id" @tap="navTo(`./lessonsDetail?acid=${list.arrangeCourseId}&aclid=${list.arrangeCourseLessonId}&lid=${list.lessonId}`)">
 								<view class="swiper-item">
 									<view class="calendar-description">{{ list.lessonsName }}</view>
-									<view class="calendar-time">课室信息：{{ list.classRoomInfo }}</view>
+									<view class="calendar-time" v-if="list.classRoomInfo">课室信息：{{ list.classRoomInfo }}</view>
+									<view class="calendar-time" v-else>课室信息：</view>
 									<view class="calendar-time flex align-center">
 										上课时间：{{ list.startTime }}
 										<text class="grayBg">未开始</text>
@@ -122,6 +123,11 @@ export default {
 					to: './classSchedule'
 				},
 				{
+					src: require('../../static/my/icon8.png'),
+					text: '我的作业',
+					to: '../../pagesB/student/task'
+				},
+				{
 					src: require('../../static/my/icon2.png'),
 					text: '我的课时',
 					to: './classInfo'
@@ -174,19 +180,15 @@ export default {
 					src: require('../../static/teacher/icon3.png'),
 					text: '课时统计',
 					to: '/pagesA/teacher/statisticsClass'
+				},
+				{
+					src: require('../../static/teacher/icon4.png'),
+					text: '作业管理',
+					to: '/pagesA/teacher/task'
 				}
 			],
 			course: [
-				{
-					lessonsName:'05/15课节《What color is it?',
-					classRoomInfo:'Tony老师家翻斗大街二栋二号',
-					startTime:'2020-03-23'
-				},
-				{
-					lessonsName:'05/15课节《What color is it?',
-					classRoomInfo:'Tony老师家翻斗大街二栋二号',
-					startTime:'2020-03-23'
-				}
+				
 			],
 			teacherCourse: [
 				{

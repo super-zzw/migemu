@@ -3,7 +3,7 @@
 		<view class="psTop">
 			<image src="@/static/ok.png" class="pkImg" mode=""></image>
 			<view class="topText">
-				恭喜你，购课成功
+				恭喜您，成功获得一节体验课
 			</view>
 		</view>
 		<view class="infoBox">

@@ -20,14 +20,17 @@
 						<!-- <image src="../../static/image/nav2.png" class="navImg"></image> -->
 					<!-- </navigator> -->
 					<view url="./shiting" hover-class='none'>
-						<image src="../../static/image/nav2.png" class="navImg"></image>
+						<navigator url="../../pagesB/student/infoSubmit" hover-class='none'>
+							<image src="../../static/image/nav2.png" class="navImg"></image>
+						</navigator>
+						
 					</view>
 					
 					<text>免费体验课程</text>
 				</view>
 				<view class="navItem">
 					<navigator url="./lessonSystem" hover-class='none'>
-						<image src="../../static/image/nav2.png" class="navImg"></image>
+						<image src="../../static/image/nav3.png" class="navImg"></image>
 					</navigator>
 					<text>了解课程体系</text>
 				</view>

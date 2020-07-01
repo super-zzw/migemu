@@ -102,35 +102,10 @@
 				currentTab:0,
 				hasMore:true,
 				notice1:[
-					// {
-					// 	createTime:'2020-03-24',
-					// 	type:6,
-					// 	title:'Pioneers系列课程',
-					// 	content:'05/15课节《What color is it?》',
-					// 	tip:'老师已经布置对应作业'
-					// },
-					// {
-					// 	createTime:'2020-03-24',
-					// 	type:1,
-					// 	title:'Pioneers系列课程',
-					// 	content:'05/15课节《What color is it?》',
-					// 	tip:'老师已经布置对应作业'
-					// },
-					// {
-					// 	createTime:'2020-03-24',
-					// 	type:1,
-					// 	title:'Pioneers系列课程',
-					// 	content:'05/15课节《What color is it?》',
-					// 	tip:'老师已经布置对应作业'
-					// }
+					
 				],
 				notice2:[
-					// {
-					// 	createTime:'2020-03-24',
-					// 	title:'Pioneers系列课程',
-					// 	subTitle:'这里是通知的内容文字这里是通知的内容文字这里是通知的内容文字这里是通知的内容文字这里是通知的内容文字这里是通知的内容…',
-						
-					// }
+					
 				],
 				page:1,
 				userRole:-1,  //初始值

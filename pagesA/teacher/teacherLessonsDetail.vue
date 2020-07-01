@@ -40,10 +40,10 @@
 						<image src="../../static/teacher/qxjk.png" ></image>
 						取消结课
 					</view>
-					<view class="block-bottom-col flex align-center justify-center" @tap="navTo('./taskQear')" data-target="Modal">
+					<!-- <view class="block-bottom-col flex align-center justify-center" @tap="navTo('./taskQear')" data-target="Modal">
 						<image src="../../static/teacher/bz.png" ></image>
 						布置作业
-					</view>
+					</view> -->
 				</view>
 				<!-- 线下 -->
 				<!-- 线上 -->
@@ -162,7 +162,7 @@
 					text: "线下课"
 				},
 				{
-					color: "#2ACC8C",
+					color: "#FDC623",
 					text: "1对1"
 				}],
 				signStatus:['已到达','请假','迟到','早退','旷课'],
@@ -389,7 +389,7 @@
 		.headBg{
 			width: 100%;
 			height: 284rpx;
-			background:linear-gradient(180deg,rgba(42,204,140,1) 0%,rgba(42,204,140,1) 40%,rgba(67,213,155,0) 100%);
+			background:#FDC623;
 			position: absolute;
 		}
 		.block{

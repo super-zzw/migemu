@@ -52,16 +52,16 @@ export default{
 		line-height: 88rpx;
 		font-size: 32rpx;
 		text-align: center;
-		color: #fff;
+		color: #303133;
 		font-weight: bold;
 		margin: 0 auto;
 	}
 	.pfBtn2{
 		width: 540rpx;
 		margin-top: 38rpx;
-		border: 2rpx solid #FDC623;
+		border:2px solid rgba(192,196,204,1);
 		border-radius: 44rpx;
-		color: #FDC623;
+		color: #909399;
 		text-align: center;
 		font-size: 32rpx;
 		line-height: 84rpx;

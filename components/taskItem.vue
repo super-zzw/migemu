@@ -7,7 +7,7 @@
 					{{task.jobName}}
 				</view>
 				<view class="tcpL3">
-					<text class="tcpL3Text t1" v-if="task.checkStatus == 0">未完成</text>
+					<text class="tcpL3Text t1" v-if="task.checkStatus == 0">未开始</text>
 					<text class="tcpL3Text t2" v-if="task.checkStatus == 1">已提交</text>
 					<text class="tcpL3Text t2" v-if="task.checkStatus == 2">已批阅</text>
 					<text class="tcpL3Text t3" v-if="task.checkStatus == -1">被打回</text>
@@ -145,10 +145,11 @@ export default{
 					border-radius: 8rpx;
 				}
 				.tcpL3Text.t1{
-					background-color: #C0C4CC;
+					background-color: #E7E6E6;
+					color: #606266;
 				}
 				.tcpL3Text.t2{
-					background-color: #FDC623;
+					background-color: #F78726;
 				}
 				.tcpL3Text.t3{
 					background-color: #F72C2C;

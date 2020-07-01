@@ -10,7 +10,7 @@
 			<!-- <view class="tags">
 				<colorTag :tagData="dataItem"></colorTag>
 			</view> -->
-			<text class="txt">创建语言思维，开发创造想象力、激发潜能及学习兴趣，培养学习能力</text>
+			<text class="txt"></text>
 			<view class="otherInfo">
 				<view class="price">
 					<text class="pV1">¥{{dataItem.sellingPrice}}</text>
@@ -70,11 +70,19 @@ import colorTag from '@/components/colorTag.vue'
 	.itemInfo{
 		flex: 1;
 		margin-left: 20rpx;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
 		.title{
 			color: #303133;
 			font-size: 32rpx;
 			font-weight: bold;
 			margin-bottom: 10rpx;
+			 overflow:hidden; 
+			 text-overflow:ellipsis;
+			 display:-webkit-box; 
+			 -webkit-box-orient:vertical;
+			 -webkit-line-clamp:2;
 		}
 		.txt{
 			font-size:24rpx;
@@ -84,8 +92,8 @@ import colorTag from '@/components/colorTag.vue'
 		.otherInfo{
 			display: flex;
 			justify-content: space-between;
-			margin-top: 48rpx;
 			align-items: center;
+			// flex: 1;
 			.price{
 				.pV1{
 					color: #F72C2C;

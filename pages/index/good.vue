@@ -221,6 +221,13 @@
 				userInfo:""
 			}
 		},
+		onShareTimeline(opt){
+		   return {
+		     title: this.course.name,
+		     query: "id=" + this.courseId + "&inviteCode=" + this.userInfo.inviteCode,
+		     imageUrl:this.course.coverUrl,
+		   }
+		  },
 		methods:{
 			onShareAppMessage (){
 				return {

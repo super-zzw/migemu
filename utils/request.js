@@ -31,7 +31,7 @@ export function http(opt) {
 					if(res.data && res.data.code == 200000){
 						resolve(res.data)
 					} else if (res.data && res.data.code == 300000) {
-						console.log(res.data);
+				
 						uni.hideLoading()
 						utils.rmData();
 						uni.reLaunch({

@@ -237,6 +237,19 @@
 				"navigationBarTitleText": "支付失败"
 			}
 		}  
+        ,{
+            "path" : "pages/index/fightOk",
+            "style" : {
+				"navigationBarTitleText": "参团成功"
+			}
+        }
+        ,{
+            "path" : "pages/order/orderDetail",
+            "style" : {
+				"navigationBarTitleText": "订单详情",
+				"navigationBarBackgroundColor":"#FDC623"
+			}
+        }
     ],
 	"subPackages": [
 		{
@@ -359,6 +372,13 @@
 						"navigationBarTitleText": "优惠券",
 						"enablePullDownRefresh": true
 					}
+				},
+				{
+					"path":"getCoupons",
+					"style":{
+						"navigationBarTitleText": "优惠券",
+						"enablePullDownRefresh": true
+					}
 				}
 			]
 		},
@@ -368,7 +388,7 @@
 				{
 					"path":"index",
 					"style":{
-						"navigationBarTitleText": "拼团课程列表",
+						"navigationBarTitleText": "拼团课程",
 						"enablePullDownRefresh": true
 					}
 				}

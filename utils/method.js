@@ -97,7 +97,18 @@ export default{
 		    return (Y2+'-'+M2);
 		  }
 	},
-
+    transToDate(data) {
+    	var days = parseInt(data / (1000 * 60 * 60 * 24));
+    	var hours = parseInt((data % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    	var minutes = parseInt((data % (1000 * 60 * 60)) / (1000 * 60));
+    	var seconds = (data % (1000 * 60)) / 1000;
+    	return {
+    		d:days,
+    		h:hours,
+    		m:minutes,
+    		s:seconds
+    	};
+    },
 	// 计算出多少岁几个月了
 	getOld(str) {
 		var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})/);

@@ -16,9 +16,6 @@
 					<text>共建合作学堂</text>
 				</view>
 				<view class="navItem">
-					<!-- <navigator url="./shiting" hover-class='none'> -->
-						<!-- <image src="../../static/image/nav2.png" class="navImg"></image> -->
-					<!-- </navigator> -->
 					<view url="./shiting" hover-class='none'>
 						<navigator url="../../pagesB/student/infoSubmit" hover-class='none'>
 							<image src="../../static/image/nav2.png" class="navImg"></image>
@@ -35,14 +32,15 @@
 					<text>了解课程体系</text>
 				</view>
 			</view>
+			
+			<view class="advertis">
+				<image src="https://mgm-1300255297.cos.ap-nanjing.myqcloud.com/hyjy/default/group.png" ></image>
+			</view>
+			
 			<view class="listTitle">
 				<view class="lt1">
 					课程列表 
 				</view>
-				<!-- <view class="lt2" @tap="toPath('/pages/index/list')">
-					<text class="lt2Text">更多</text> 
-					<image class="lt2Img" src="../../static/more.png" mode="widthFix"></image>
-				</view> -->
 			</view>
 			<!-- <courseTag :types="types" :currentType="currentType" @change="tapTag"></courseTag> -->
 			<view class="list">
@@ -227,6 +225,14 @@
 						color:rgba(96,98,102,1);
 						line-height:40rpx;
 					}
+				}
+			}
+			.advertis{
+				
+				margin: 40rpx 0;
+				image{
+					width: 100%;
+					height: 170rpx;
 				}
 			}
 			.listTitle{

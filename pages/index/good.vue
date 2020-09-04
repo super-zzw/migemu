@@ -32,6 +32,11 @@
 			</view>
 		</view>
 		<view class="info">
+			<view class="i0">
+				<uni-countdown color="#FFFFFF" background-color="#F23D3D" border-color="#F23D3D" splitorColor="#F23D3D"  :hour="10" :minute="01" :second="01" @timeup="timeUp"> </uni-countdown>
+				<text class="t1">后结束</text>
+				<text class="t2">10人起成团</text>
+			</view>
 			<view class="i1">
 				<text class="it1" v-for="(sItem,sIndex) in course.subjectLis" :key="sIndex">{{sItem.title}}</text>
 				<text class="it2">{{course.name}}</text>
@@ -44,6 +49,19 @@
 				</view>
 				<view class="it2">
 					<colorTag :tagData="course" :showSubjectLis="false" ></colorTag>
+				</view>
+			</view>
+			<view class="i4">
+				<view class="imgList">
+					<!-- <view class="fpNumstImg" v-for="(imgItem,imgIndex) in order.group" :key="imgIndex">
+						<image v-if="imgItem.icon && imgIndex < 10" class="img" :src="imgItem.icon" mode=""></image>
+					</view> -->
+					<view class="fpNumstImg" v-for="(imgItem,imgIndex) in 5" :key="imgIndex">
+						<image  class="img" src="../../static/+.png" ></image>
+					</view>
+					<image   src="../../static/+.png" class="fpNumstImg"></image>
+					<text class="t1">已有9人参团，</text>
+					<text class="t2">还差1人成团</text>
 				</view>
 			</view>
 			<!-- <view class="i3" @tap="showModal" data-target="Modal">
@@ -122,8 +140,15 @@
 					<image src="../../static/share.png" class="rebeatImg" mode=""></image>
 					<view class="rebeatText">邀请返利</view>
 				</view>
-				<view class="oprBtn" @tap="createOrder">
-					立即购买
+				<view class="btns" >
+					<view class="buy optbtn" @tap="createOrder">
+						<text class="desc">单独购买</text>
+						<text class="price">¥2999</text>	
+					</view>
+					<view class="fight optbtn" @tap="fightOrder">
+						<text class="desc">我要参团</text>
+						<text class="price">¥1899</text>		
+					</view>
 				</view>
 			</view>
 			<!-- 学生课程进入 -->
@@ -195,11 +220,13 @@
 	import colorTag from '@/components/colorTag.vue'
 	import utils from '../../utils/method.js'
 	import defaultPage from "@/components/defaultPage.vue"
+	import uniCountdown from "@/components/linnian-CountDown/uni-countdown.vue"
 	export default{
 		components:{
 			moreList,
 			colorTag,
-			defaultPage
+			defaultPage,
+			uniCountdown
 		},
 		data(){
 			return{
@@ -319,10 +346,27 @@
 				// })
 				if(this.isLogin){
 					uni.navigateTo({
-						url:"/pages/order/confirm"
+						url:"/pages/order/confirm?type=1"
 					})
 				}else{
-					this.$store.commit('jumpPageSet',{ path:"/pages/order/confirm" });
+					this.$store.commit('jumpPageSet',{ path:"/pages/order/confirm?type=1" });
+					uni.navigateTo({
+						url:"/pages/author/author"
+					})
+				}
+			},
+			async fightOrder(){
+				this.$store.commit('orderInfoSet',this.course);
+				this.$store.commit('orderSchoolListSet',this.schoolList)
+				// uni.navigateTo({
+				// 	url:"/pages/order/confirm"
+				// })
+				if(this.isLogin){
+					uni.navigateTo({
+						url:"/pages/order/confirm?type=2"
+					})
+				}else{
+					this.$store.commit('jumpPageSet',{ path:"/pages/order/confirm?type=2" });
 					uni.navigateTo({
 						url:"/pages/author/author"
 					})
@@ -492,6 +536,22 @@
 	}
 	.info{
 		padding: 32rpx;
+		.i0{
+			display: flex;
+			margin-bottom: 10rpx;
+			.t1{
+				font-size: 29rpx;
+				font-weight: 500;
+				color: #909399;
+				margin-left: 10rpx;
+			}
+			.t2{
+				margin-left: 20rpx;
+				font-size: 29rpx;
+				font-weight: 500;
+				color: #F72C2C;
+			}
+		}
 		.i1{
 			// display: flex;
 			align-items: center;
@@ -549,6 +609,35 @@
 				margin-left: 4rpx;
 				width: 36rpx;
 				height: 36rpx;
+			}
+		}
+		.i4{
+			margin-top: 30rpx;
+			.imgList{
+				display: flex;
+				align-items: center;
+				.fpNumstImg{
+					width: 50rpx;
+					height: 50rpx;
+					margin-left: -15rpx;
+					.img{
+						width: 100%;
+						height: 100%;
+					}
+					
+				}
+				.t1{
+					font-size: 29rpx;
+					font-weight: 500;
+					color: #909399;
+					margin-left: 10rpx;
+				}
+				.t2{
+					font-size: 29rpx;
+					font-weight: 500;
+					color: #F72C2C;
+				}
+				
 			}
 		}
 	}
@@ -690,6 +779,40 @@
 				line-height: 96rpx;
 				color: #303133;
 				font-size: 36rpx;
+			}
+			.btns{
+				background-color: #fff;
+				display: flex;
+				justify-content: space-around;
+				height: 100%;
+				flex: 1;
+				margin-left: 40rpx;
+				.optbtn{
+					width: 220rpx;
+					height: 76rpx;
+					border-radius: 40rpx;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: space-around;
+					.desc{
+						font-size: 22rpx;
+						font-weight: 500;
+						color: #FFFEFA;
+					}
+					.price{
+						font-size: 32rpx;
+						font-weight: 500;
+						color: #FFFFFF;
+					}
+				}
+				.buy{
+					background: #FDC623;
+				}
+				.fight{
+					background: #F72C2C;
+				}
+				
 			}
 		}
 	}

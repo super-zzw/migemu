@@ -101,5 +101,9 @@ export default{
 	reviewTask:"/teach/get/homeWork/examine",  //批阅学生作业POST
 	repluseTask:"/teach/get/homeWork/repulse",  //作业打回重做POST
 	taskClass:"/teach/get/arrange/course",  //获取可以布置作业的课程列表
+	
+	
+	// 1.3.0迭代
+	getGroupList:"/pub/get/groupList", //获取团购列表
 
 }

@@ -7,9 +7,9 @@
 			<view class="title">
 				{{dataItem.name}}
 			</view>
-			<!-- <view class="tags">
+			<view class="tags">
 				<colorTag :tagData="dataItem"></colorTag>
-			</view> -->
+			</view>
 			<text class="txt"></text>
 			<view class="otherInfo">
 				<view class="price">

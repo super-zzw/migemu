@@ -2,6 +2,15 @@
 	<view class="confirm">
 		<view class="info">
 			<courseItem :dataItem="orderInfo"></courseItem>
+			<view class="descBox" v-if="type==2">
+				<view class="imgList">
+					<view class="fpNumstImg" v-for="(imgItem,imgIndex) in 5" :key="imgIndex">
+						<image  class="img" src="../../static/+.png" ></image>
+					</view>
+					<text class="status">待支付</text>
+				</view>
+				<text class="text2">为您加入仅差1人的拼团，支付后即可拼购成功</text>
+			</view>
 		</view>
 		<view class="checkData">
 			<view class="position position1" @tap="showModal" data-target="bottomModal" v-if="orderInfo.type === 0">
@@ -10,13 +19,21 @@
 				<image src="../../static/select.png" class="cpImg" mode=""></image>
 			</view>
 			<view class="position">
-				<input placeholder="请输入推荐码" type="text" v-model="reCode" class="cpInput" placeholder-style />
+				<input placeholder="请输入推荐码 (选填)" type="text" v-model="yhq" class="cpInput" placeholder-style />
 				<view class="checkCode" @tap="checkCode">
 					验证
 				</view>
 			</view>
-			<view class="mention">
+			<!-- <view class="mention">
 				如果没有推荐码请忽略此项
+			</view> -->
+			<view class="position position1">
+				<text v-model="reCode" class="txt1" >优惠券</text>
+				<view class="right" @tap="showModal" data-target="bottomModal1">
+					<text class="hasYhq" v-if="yhq>0">优惠￥{{yhq}}</text>
+					<image src="../../static/select.png" class="cpImg" mode=""></image>
+				</view>
+				
 			</view>
 		</view>
 		<view class="cfBoo">
@@ -58,6 +75,40 @@
 				</view>
 			</view>
 		</view>
+		<view class="cu-modal bottom-modal" :class="modalName=='bottomModal1'?'show':''">
+			<view class="cu-dialog myDialog">
+				<view class="dialog"> 
+					<text class="titles">选择优惠券</text>
+					<text class="cancel" @tap="hideModal">取消</text>
+					<view class="card-list">
+						<view class="card-item" v-for="(item,index) in couponsList" :key="index" v-if="couponsList">
+							<view class="fengmian">
+								<view class="content">
+									￥<text>{{item.amount}}</text>
+								</view>
+							</view>
+							<view class="main">
+								<text class="title">{{item.title}}</text>
+							
+								<text class="date">{{item.startTime|date}} 至 {{item.endTime|date}} 有效</text>
+							</view>
+							<view class="circle" v-if="item.useFlag">
+							
+								<text v-if="index!=selYHQ" @tap="selCoupon(item,index)"></text>
+								<image src="../../static/select.png" mode="" v-if="index==selYHQ" @tap="selCoupon(item,index)"></image>
+							</view>
+							<image src="../../static/nouse.png" mode="" class="nouse" v-if="!item.useFlag"></image>
+						</view>
+					</view>
+					<view v-if="!couponsList.length" class="none">
+						<image src="../../static/null.png" mode=""></image>
+						<text>暂无优惠券</text>
+					</view>
+					<view class="confirmBtn" @tap="sMask=false,sModal1=false">确定</view>
+				</view>
+			
+		</view>
+		</view>
 	</view>
 </template>
 
@@ -65,6 +116,7 @@
 import { mapState } from 'vuex'
 import courseItem from "@/components/courseItem.vue"
 import utils from "../../utils/method.js"
+
 export default{
 	components:{
 		courseItem
@@ -79,12 +131,18 @@ export default{
 			oldAddrIndex:"",
 			reCode:"",
 			checkoutCodeRes:true,
+			yhq:'',
+			couponsList:[],
+			type:''
 		}
 	},
 	computed:{
 		...mapState(['orderInfo','orderSchoolList','inviteCode'])
 	},
-	onLoad() {
+	onLoad(opt) {
+		if(opt.type){
+			this.type=opt.type
+		}
 		if(this.orderSchoolList.length == 1){
 			this.addrIndex = 0;
 			this.checkAddr()
@@ -92,6 +150,7 @@ export default{
 	},
 	methods:{
 		showModal(e) {
+			console.log(e)
 			this.modalName = e.currentTarget.dataset.target;
 			this.oldAddrIndex = this.addrIndex;
 		},
@@ -244,6 +303,47 @@ export default{
 		padding-bottom: 2rpx;
 		background-color: #F6F6F6;
 	}
+	.descBox{
+		   margin-top: 40rpx;
+		   display: flex;
+		   flex-direction: column;
+		   margin-left: 20rpx;
+		   width: 100%;
+		   .imgList{
+			   display: flex;
+			   margin-top: 30rpx;
+			   .fpNumstImg{
+			   	width: 50rpx;
+			   	height: 50rpx;
+			   	margin-left: -15rpx;
+			   	.img{
+			   		width: 100%;
+			   		height: 100%;
+			   	}
+			   	
+		   }
+		   .status{
+			   width: 80rpx;
+			   height: 35rpx;
+			   background: #FDC623;
+			   border-radius: 19rpx;
+			   	margin-left: -15rpx;
+				font-size: 20rpx;
+				font-weight: 600;
+				color: #303133;
+				line-height: 35rpx;
+				z-index: 100;
+				text-align: center;
+		   }
+		  }
+		  .text2{
+			  margin-top: 10rpx;
+			  margin-bottom: 30rpx;
+			  font-size: 28rpx;
+			  font-weight: 500;
+			  color: #606266;
+		  }
+		}
 	.checkData{
 		padding: 40rpx 106rpx 0 106rpx;
 		box-sizing: border-box;
@@ -276,6 +376,21 @@ export default{
 			.cpImg{
 				width: 40rpx;
 				height: 40rpx;
+			}
+			.hasYhq{
+				font-size: 29rpx;
+				font-weight: 600;
+				color: #F23D3D;
+				margin-right: 18rpx;
+				display: inline-block;
+			}
+			.txt1{
+				font-size: 28rpx;
+				font-weight: 500;
+				color: #909399;
+			}
+			.right{
+					display: flex;
 			}
 			.checkCode{
 				position: absolute;
@@ -349,7 +464,7 @@ export default{
 			.oprBtn{
 				flex: 1;
 				background-color: #FDC623;
-				color: #fff;
+				color: #303133;
 				text-align: center;
 				line-height: 96rpx;
 				font-size: 36rpx;
@@ -379,4 +494,186 @@ export default{
 		}
 	}
 }
+.dialog{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.titles {
+			margin: 38rpx 0 58rpx;
+			font-size: 32rpx;
+			font-family: PingFangSC-Medium, PingFang SC;
+			font-weight: 600;
+			color: rgba(48, 49, 51, 1);
+			
+		}
+
+		.cancel {
+			position: absolute;
+			right: 30rpx;
+			top: 40rpx;
+			font-size: 26rpx;
+			font-weight: 400;
+			color: #F78726 !important;
+		}
+
+		// .card-list {
+		// 	height: 800rpx;
+		// 	overflow: scroll;
+		// }
+
+		.card-item {
+			// margin:0 32rpx;
+			background: #fff;
+			width: 700rpx;
+			height: 200rpx;
+			display: flex;
+			margin-bottom: 40rpx;
+			// align-items: center;
+
+			.fengmian {
+				width: 200rpx;
+				height: 200rpx;
+				background: url(../../static/yhq.png) no-repeat;
+				background-size: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				.content {
+					font-size: 28rpx;
+					font-family: PingFangSC-Semibold, PingFang SC;
+					font-weight: 600;
+					color: rgba(255, 255, 255, 1);
+					display: flex;
+					align-items: flex-end;
+
+					text {
+						font-size: 52rpx;
+						line-height: 58rpx;
+					}
+				}
+
+			}
+
+			.main {
+				flex: 1;
+				margin: 0 10rpx 0 30rpx;
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				height: 100%;
+
+				.title {
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					font-size: 32rpx;
+					font-family: PingFangSC-Regular, PingFang SC;
+					font-weight: 500;
+					color: rgba(48, 49, 51, 1);
+					// width: 100%;
+					width: 100%;
+				}
+
+				.info {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+
+					.txt {
+						font-size: 28rpx;
+						font-family: PingFangSC-Regular, PingFang SC;
+						font-weight: 400;
+						color: rgba(168, 171, 179, 1);
+					}
+
+					.btn {
+						border-radius: 22rpx;
+
+						padding: 0 18rpx;
+						line-height: 44rpx;
+						font-size: 28rpx;
+						font-family: PingFangSC-Regular, PingFang SC;
+						font-weight: 400;
+
+					}
+
+					.btn1 {
+						border: 2rpx solid rgba(242, 61, 61, 1);
+						color: rgba(242, 61, 61, 1);
+					}
+
+					.btn2 {
+						border: 2rpx solid rgba(144, 147, 153, 1);
+						color: rgba(144, 147, 153, 1);
+					}
+				}
+
+				.date {
+					font-size: 24rpx;
+					font-family: PingFangSC-Regular, PingFang SC;
+					font-weight: 400;
+					color: rgba(168, 171, 179, 1);
+				}
+			}
+		}
+
+		.card-item:last-child {
+			margin-bottom: 60rpx;
+		}
+
+		.circle {
+			text {
+				width: 36rpx;
+				height: 36rpx;
+				border: 2rpx solid rgba(217, 217, 217, 1);
+				border-radius: 50%;
+			}
+
+			image {
+				width: 36rpx;
+				height: 36rpx;
+			}
+
+			height: 100%;
+			margin-right: 30rpx;
+			display: flex;
+			align-items: center;
+		}
+
+		.nouse {
+			width: 104rpx;
+			height: 104rpx;
+
+		}
+		.none {
+			image {
+				width: 200rpx;
+				height: 150rpx;
+				margin-bottom: 20rpx;
+			}
+			margin: 50rpx 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-size:28rpx;
+			font-family:PingFangSC-Regular,
+			PingFang SC;
+			font-weight:400;
+			color:rgba(144, 147, 153, 1);
+		}
+		
+		.confirmBtn {
+			width: 686rpx;
+			height: 88rpx;
+            border-radius: 44rpx;
+			background: #FDC623;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #fff;
+			margin: 40rpx 0;
+		}
 </style>

@@ -148,6 +148,16 @@ export default {
 					to: '../index/article?id=4'
 				},
 				{
+					src: require('../../static/my/icon9.png'),
+					text: '优惠券',
+					to: '../../pagesC/index'
+				},
+				{
+					src: require('../../static/my/icon10.png'),
+					text: '购课订单',
+					to: '../../pagesD/index'
+				},
+				{
 					src: require('../../static/my/icon6.png'),
 					text: '联系客服',
 					to: '',

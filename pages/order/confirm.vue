@@ -1,15 +1,19 @@
 <template>
 	<view class="confirm">
 		<view class="info">
-			<courseItem :dataItem="orderInfo"></courseItem>
+			<courseItem :dataItem="orderInfo" v-if="type==1"></courseItem>
+			<courseItem :dataItem="orderInfo" :isFight="true" v-else></courseItem>
 			<view class="descBox" v-if="type==2">
 				<view class="imgList">
-					<view class="fpNumstImg" v-for="(imgItem,imgIndex) in 5" :key="imgIndex">
-						<image  class="img" src="../../static/+.png" ></image>
+					<view class="fpNumstImg" v-for="(imgItem,imgIndex) in orderInfo.imgList" :key="imgIndex">
+						<image  class="img" :src="imgItem" ></image>
+					</view>
+					<view class="fpNumstImg">
+						<image  class="img" :src="userInfo.avatarUrl" ></image>
 					</view>
 					<text class="status">待支付</text>
 				</view>
-				<text class="text2">为您加入仅差1人的拼团，支付后即可拼购成功</text>
+				<text class="text2">为您加入仅差{{orderInfo.groupMinMember-orderInfo.groupMember}}人的拼团，支付后即可拼购成功</text>
 			</view>
 		</view>
 		<view class="checkData">
@@ -19,7 +23,7 @@
 				<image src="../../static/select.png" class="cpImg" mode=""></image>
 			</view>
 			<view class="position">
-				<input placeholder="请输入推荐码 (选填)" type="text" v-model="yhq" class="cpInput" placeholder-style />
+				<input placeholder="请输入推荐码 (选填)" type="text" v-model="reCode" class="cpInput" placeholder-style />
 				<view class="checkCode" @tap="checkCode">
 					验证
 				</view>
@@ -27,7 +31,7 @@
 			<!-- <view class="mention">
 				如果没有推荐码请忽略此项
 			</view> -->
-			<view class="position position1">
+			<view class="position position1" v-if="type==1">
 				<text v-model="reCode" class="txt1" >优惠券</text>
 				<view class="right" @tap="showModal" data-target="bottomModal1">
 					<text class="hasYhq" v-if="yhq>0">优惠￥{{yhq}}</text>
@@ -47,8 +51,11 @@
 				</view>
 			</view>
 			<view class="opration">
-				<view class="price">
-					¥{{orderInfo.sellingPrice}}
+				<view class="price" v-if="type==1">
+					¥{{orderInfo.sellingPrice-yhq}}
+				</view>
+				<view class="price" v-else>
+					¥{{orderInfo.grouponPrice}}
 				</view>
 				<view class="oprBtn" @tap="submit">
 					支付订单
@@ -79,14 +86,16 @@
 			<view class="cu-dialog myDialog">
 				<view class="dialog"> 
 					<text class="titles">选择优惠券</text>
-					<text class="cancel" @tap="hideModal">取消</text>
+					<text class="cancel1" @tap="hideModal">取消</text>
 					<view class="card-list">
 						<view class="card-item" v-for="(item,index) in couponsList" :key="index" v-if="couponsList">
-							<view class="fengmian">
-								<view class="content">
+							<view class="fengmian"  :style="{backgroundImage:item.useFlag?'url(../../static/yhq.png)':
+							'url(../../static/yhq2.png)'}">
+								<view class="con">
 									￥<text>{{item.amount}}</text>
 								</view>
 							</view>
+		
 							<view class="main">
 								<text class="title">{{item.title}}</text>
 							
@@ -95,16 +104,20 @@
 							<view class="circle" v-if="item.useFlag">
 							
 								<text v-if="index!=selYHQ" @tap="selCoupon(item,index)"></text>
-								<image src="../../static/select.png" mode="" v-if="index==selYHQ" @tap="selCoupon(item,index)"></image>
+								<image src="../../static/select1.png" mode="" v-if="index==selYHQ" @tap="selCoupon(item,index)"></image>
 							</view>
 							<image src="../../static/nouse.png" mode="" class="nouse" v-if="!item.useFlag"></image>
 						</view>
+						<view v-if="!couponsList.length" class="none">
+							<image src="../../static/null.png" mode=""></image>
+							<text>暂无优惠券</text>
+							<!-- <view class="confirmBtn" @tap="sMask=false,sModal1=false">确定</view> -->
+						</view>
+						
 					</view>
-					<view v-if="!couponsList.length" class="none">
-						<image src="../../static/null.png" mode=""></image>
-						<text>暂无优惠券</text>
-					</view>
-					<view class="confirmBtn" @tap="sMask=false,sModal1=false">确定</view>
+					<view class="confirmBtn" @tap="modalName=null,yhq=couponsList[selYHQ].amount,wuserCouponId=
+					couponsList[selYHQ].couponId">确定</view>
+					
 				</view>
 			
 		</view>
@@ -131,22 +144,31 @@ export default{
 			oldAddrIndex:"",
 			reCode:"",
 			checkoutCodeRes:true,
-			yhq:'',
+			yhq:0,
 			couponsList:[],
-			type:''
+			type:'',
+			selYHQ:0,
+			wuserCouponId:''
 		}
 	},
 	computed:{
-		...mapState(['orderInfo','orderSchoolList','inviteCode'])
+		...mapState(['orderInfo','orderSchoolList','inviteCode','userInfo'])
 	},
-	onLoad(opt) {
+	filters:{
+		
+		date(data){
+			return utils.unixToDatetime(data,9)
+		}
+	},
+	async onLoad(opt) {
 		if(opt.type){
 			this.type=opt.type
 		}
 		if(this.orderSchoolList.length == 1){
 			this.addrIndex = 0;
-			this.checkAddr()
+			await this.checkAddr()
 		}
+		await this.getCouponsList()
 	},
 	methods:{
 		showModal(e) {
@@ -173,12 +195,26 @@ export default{
 			this.addrId = this.orderSchoolList[this.addrIndex].id;
 			this.hideModal(true)
 		},
+		selCoupon(item,index){
+			this.selYHQ=index
+			// this.yhq=item.amount
+		},
 		checkChange(e){
 			if(e.detail.value[0] == 1){
 				this.agreePact = true;
 			}else{
 				this.agreePact = false;
 			}
+		},
+		async getCouponsList(){
+			await this.$http({
+				apiName:'getUseCoupon',
+				data:{
+					courseId:this.orderInfo.id
+				}
+			}).then(res=>{
+				this.couponsList=res.data
+			})
 		},
 		async submit(){
 			uni.showLoading({
@@ -200,7 +236,11 @@ export default{
 			]
 			let jres = await utils.judgeData(_jData);
 			if(jres){
-				this.payMoney()
+				// if(this.type==1){
+					this.payMoney()
+				// }else{
+				// 	this.fightOrder()
+				// }
 			}
 		},
 		async checkCode(){
@@ -232,17 +272,33 @@ export default{
 				//TODO handle the exception
 			}
 		},
+		
 		async payMoney(){
 			var that = this
-			await this.$http({
-				apiName:"orderCourse",
-				method:"POST",
-				data:{
+			let dataInfo,apiName
+			if(this.type==1){
+				apiName="orderCourse"
+				dataInfo={
 					courseId:this.orderInfo.id,
+					code:this.reCode,
+					schoolId:this.addrId,
+					invitationCode:this.inviteCode,
+					wuserCouponId:this.wuserCouponId
+				}
+			}else{
+				apiName="payFightOrder"
+				dataInfo={
+					groupRuleId:this.orderInfo.groupRuleId,
+					
 					code:this.reCode,
 					schoolId:this.addrId,
 					invitationCode:this.inviteCode
 				}
+			}
+			await this.$http({
+				apiName:apiName,
+				method:"POST",
+				data:dataInfo
 			}).then(res => {
 				let obj = {
 					nonceStr: res.data.nonceStr,
@@ -261,11 +317,16 @@ export default{
 							title: "支付成功",
 							duration: 1500,
 						})
-						setTimeout(()=>{
+						if(that.type==1){
 							uni.redirectTo({
 								url:"/pages/order/paySuccess?id=" + that.orderInfo.teacherId
 							})
-						},1500)
+						}else{
+							uni.redirectTo({
+								url:"/pages/index/fightOk?id="+that.orderInfo.id
+							})
+						}
+						
 				    },
 				    fail: function (err) {
 					    uni.hideLoading()
@@ -313,12 +374,13 @@ export default{
 			   display: flex;
 			   margin-top: 30rpx;
 			   .fpNumstImg{
-			   	width: 50rpx;
-			   	height: 50rpx;
-			   	margin-left: -15rpx;
+			   	width: 60rpx;
+			   	height: 60rpx;
+			   	margin-left: -10rpx;
 			   	.img{
 			   		width: 100%;
 			   		height: 100%;
+					border-radius: 50%;
 			   	}
 			   	
 		   }
@@ -339,7 +401,7 @@ export default{
 		  .text2{
 			  margin-top: 10rpx;
 			  margin-bottom: 30rpx;
-			  font-size: 28rpx;
+			  font-size: 32rpx;
 			  font-weight: 500;
 			  color: #606266;
 		  }
@@ -508,7 +570,7 @@ export default{
 			
 		}
 
-		.cancel {
+		.cancel1 {
 			position: absolute;
 			right: 30rpx;
 			top: 40rpx;
@@ -517,10 +579,10 @@ export default{
 			color: #F78726 !important;
 		}
 
-		// .card-list {
-		// 	height: 800rpx;
-		// 	overflow: scroll;
-		// }
+		.card-list {
+			height: 700rpx;
+			overflow: scroll;
+		}
 
 		.card-item {
 			// margin:0 32rpx;
@@ -534,13 +596,13 @@ export default{
 			.fengmian {
 				width: 200rpx;
 				height: 200rpx;
-				background: url(../../static/yhq.png) no-repeat;
-				background-size: 100%;
+				// background: url(../../static/yhq.png) no-repeat;
+				background-size:contain;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 
-				.content {
+				.con{
 					font-size: 28rpx;
 					font-family: PingFangSC-Semibold, PingFang SC;
 					font-weight: 600;
@@ -558,13 +620,13 @@ export default{
 
 			.main {
 				flex: 1;
-				margin: 0 10rpx 0 30rpx;
+				margin: 0 10rpx 0 50rpx;
 				overflow: hidden;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-around;
 				height: 100%;
-
+                text-align: left;
 				.title {
 					overflow: hidden;
 					white-space: nowrap;
@@ -573,7 +635,7 @@ export default{
 					font-family: PingFangSC-Regular, PingFang SC;
 					font-weight: 500;
 					color: rgba(48, 49, 51, 1);
-					// width: 100%;
+					
 					width: 100%;
 				}
 
@@ -626,15 +688,15 @@ export default{
 
 		.circle {
 			text {
-				width: 36rpx;
-				height: 36rpx;
+				width: 40rpx;
+				height: 40rpx;
 				border: 2rpx solid rgba(217, 217, 217, 1);
 				border-radius: 50%;
 			}
 
 			image {
-				width: 36rpx;
-				height: 36rpx;
+				width: 40rpx;
+				height: 40rpx;
 			}
 
 			height: 100%;
@@ -674,6 +736,6 @@ export default{
 			justify-content: center;
 			align-items: center;
 			color: #fff;
-			margin: 40rpx 0;
+			margin-bottom:40rpx ;
 		}
 </style>

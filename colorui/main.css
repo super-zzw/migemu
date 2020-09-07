@@ -2457,6 +2457,8 @@ button.cuIcon.lg {
 	background-color: #f8f8f8;
 	border-radius: 10upx;
 	overflow: hidden;
+	/* height: 800rpx; */
+	/* overflow: scroll */
 }
 
 .cu-modal.bottom-modal::before {

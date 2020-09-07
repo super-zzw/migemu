@@ -2,7 +2,8 @@
 	<view class="container">
 		<view class="card-item" v-for="item in datalist" :key="item.id" v-if="datalist.length&&loading">
 			<view class="fengmian">
-				<view class="content">
+				<view class="con">
+					
 					￥<text>{{item.amount}}</text>
 				</view>
 			</view>
@@ -10,8 +11,8 @@
 				<text class="title">{{item.title}}</text>
 				<view class="info">
 					<text class="txt">{{item.minConsumption|useMethod}}</text>
-					<button class="btn btn1" v-if="!item.wuserFlag" @click="recieve(item.id)" :disabled="isDisable">领取</button>
-					<text class="btn btn2" v-else >已领取</text>
+					<button class="btn0 btn1" v-if="!item.wuserFlag" @click="recieve(item.id)" :disabled="isDisable">领取</button>
+					<text class="btn0 btn2" v-else >已领取</text>
 				</view>
 				<text class="date">{{item.startTime|date}} 至 {{item.endTime|date}} 有效</text>
 			</view>
@@ -57,7 +58,7 @@
 		methods:{
 			async getAllCoupon(){
 				await this.$http({
-					apiName:'getAllCoupon',
+					apiName:'allCouponList',
 
 				}).then(res=>{
 					this.loading=true
@@ -68,7 +69,7 @@
 				this.isDisable=true
 				await this.$http({
 					apiName:'receiveCoupon',
-					type:'POST',
+					method:'POST',
 					data:{
 						couponId:id
 					}
@@ -92,7 +93,7 @@
 
 <style lang="scss">
     .container{
-		height: calc(100vh - 88rpx);
+		// height: calc(100vh - 88rpx);
 		// overflow: hidden;
 		// background-color: $page-color-base;
 	
@@ -111,11 +112,11 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				.content{
+				.con{
 					font-size:28rpx;
 					font-family:PingFangSC-Semibold,PingFang SC;
 					font-weight:600;
-					color:rgba(255,255,255,1);
+					color:#303133;
 					display: flex;
 					align-items: flex-end;
 					
@@ -153,7 +154,7 @@
 					font-weight:400;
 					color:rgba(168,171,179,1);
 				}
-				.btn{
+				.btn0{
 					border-radius:22rpx;
 					
 					padding: 0 18rpx;
@@ -165,7 +166,7 @@
 				}
 				.btn1{
 					border:2rpx solid rgba(242,61,61,1);
-					color:rgba(242,61,61,1);
+					color:#F78726;
 				}
 				.btn2{
 					border:2rpx solid rgba(144,147,153,1);

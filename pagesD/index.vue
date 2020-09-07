@@ -10,7 +10,7 @@
 			<image src="../static/rule.png" class="icon2"></image>
 		</view>
 		<view class="list">
-			<view class="itemList" v-for="item in list" :key="item.id">
+			<view class="itemList" v-for="item in list" :key="item.id" @tap="toDetail(item.id)">
 				<image :src="item.courseImg" class="lesson-img"></image>
 				<view class="main">
 					<view class="title">
@@ -25,10 +25,12 @@
 					</view>
 					<view class="bt">
 						<view class="left">
-							<uni-countdown color="#FFFFFF" background-color="#F23D3D" border-color="#F23D3D" splitorColor="#F23D3D"   :hour="item.hour" :minute="item.minute" :second="item.second" @timeup="timeUp"> </uni-countdown>
+							<uni-countdown color="#FFFFFF" background-color="#F23D3D" border-color="#F23D3D" 
+							splitorColor="#F23D3D"  :day="item.day" :hour="item.hour" :minute="item.minute" 
+							:second="item.second" @timeup="timeUp"> </uni-countdown>
 							<text class="t1">后结束</text>
 						</view>
-					    <view class="right">
+					    <view class="right" @tap="toFight()">
 							<image src="../static/add1.png" mode=""></image>
 							参团
 						</view>
@@ -82,6 +84,11 @@
 						}
 					})
 					
+				})
+			},
+			toDetail(id){
+				uni.navigateTo({
+					url:'/pages/index/good?id='+id
 				})
 			}
 		},

@@ -8,7 +8,7 @@
 		<view class="list">
 			<view class="card-item" v-if="datalist.length" v-for="(item,index) in datalist" :key="index">
 				<view class="fengmian" :class="status==-1?'':'active'">
-					<view class="content" >
+					<view class="con" >
 						￥<text>{{item.amount}}</text>
 					</view>
 				</view>
@@ -45,9 +45,7 @@
 				datalist:[]
 			};
 		},
-		onLoad() {
-			this.getMyCoupon(this.status)
-		},
+		
 		onShow() {
 			this.getMyCoupon(this.status)
 		},
@@ -70,9 +68,9 @@
 					title:'加载中...'
 				})
 			await this.$http({
-					apiName:'myCoupon',
+					apiName:'getCouponList',
 					data:{
-						status:status
+						status:this.status
 					}
 				}).then(res=>{
 				this.datalist=res.data.list
@@ -85,13 +83,17 @@
 
 <style lang="scss">
     .container{
-		height: calc(100vh - 88rpx);
+		// height: calc(100vh - 88rpx);
 		// overflow: hidden;
 		// background-color: $page-color-base;
 		.navList{
 			height: 88rpx;
 			display: flex;
+			width: 100vw;
 			background: #fff;
+			position: fixed;
+			top: 0;
+			left: 0;
 			.navItem{
 				flex: 1;
 				display: flex;
@@ -114,6 +116,7 @@
 			}
 		}
 		.list{
+			padding-top: 88rpx;
 			overflow: scroll;
 			.card-item{
 					margin:40rpx 32rpx;
@@ -128,7 +131,7 @@
 						justify-content: center;
 					background:url(../static/yhq2.png) ;
 					background-size: 100% 100%;
-						.content{
+						.con{
 							font-size:28rpx;
 							font-family:PingFangSC-Semibold,PingFang SC;
 							font-weight:600;
@@ -208,13 +211,13 @@
 		height: 100rpx;
 		}
 		.footer{
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			width: 100%;
+		    display: flex;
+			align-items: center;
+			width: 100vw;
 			height: 140rpx;
-			background: #fff;
+			// background: #fff;
 			.getCoupons{
+				width: 100%;
 					height:80rpx;
 					border-radius:40rpx;
 					background: #FDC623;

@@ -13,8 +13,9 @@
 			<text class="txt"></text>
 			<view class="otherInfo">
 				<view class="price">
-					<text class="pV1">¥{{dataItem.sellingPrice}}</text>
-					<text class="pV2">¥{{dataItem.originalPrice}}</text>
+					<text class="pV1" v-if="isFight">¥ {{dataItem.grouponPrice}}</text>
+					<text class="pV1" v-else>¥ {{dataItem.sellingPrice}}</text>
+					<text class="pV2">¥ {{dataItem.originalPrice}}</text>
 				</view>
 				<!-- <view class="teacher">
 					授课老师：{{dataItem.teacherName}}
@@ -35,6 +36,10 @@ import colorTag from '@/components/colorTag.vue'
 				type: Object,
 				default: ()=>{{}},
 			},
+			isFight:{
+				type:Boolean,
+				default:false
+			}
 		},
 		data() {
 			return {
@@ -44,7 +49,7 @@ import colorTag from '@/components/colorTag.vue'
 		methods: {
 			toDetail(id){
 				uni.navigateTo({
-					url:'/pages/index/good?id=' + id
+					url:'/pages/index/good?id='+id+'&type='+1
 				})
 			}
 		}

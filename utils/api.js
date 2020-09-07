@@ -13,7 +13,7 @@ export default{
 	commentList:"/pub/get/commentList",  //获取课程评价列表
 	article:"/pub/get/article",  //文章详情，1用户协议，2隐私协议，3课程协议，4如何上课，5关于华羽
 	checkRecommendCode:"/pub/get/teacherByRecommendCode",  //推荐校验码
-	orderCourse:"/pay/delete/courseMaterial",  //购买课程下单
+	orderCourse:"/pay/buy/courseMaterial",  //购买课程下单
 	upLoadFile:"/pub/file",  //文件上传
 	remindList:"/pub/get/remind/list",  //获取通知列表
 	noticeList:"/pub/get/notice/list",  //获取提醒列表
@@ -105,5 +105,10 @@ export default{
 	
 	// 1.3.0迭代
 	getGroupList:"/pub/get/groupList", //获取团购列表
-
+    payFightOrder:"/pay/buy/group/course", //拼团购买课程
+	getCouponList:"/pub/get/coupon/wuserList", //获取我的优惠券
+	allCouponList:"/pub/get/coupon/allList" ,//领券中心列表
+	receiveCoupon:"/pub/add/wusercoupon", //领取优惠券
+	getUseCoupon:"/pub/order/get/wuserCoupon", //根据订单金额获取优惠券可用列表
+	getOrderList:"/order/getOrderList", //获取订单列表
 }

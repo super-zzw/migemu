@@ -1,12 +1,23 @@
 <template>
 	<view class="list">
-		<view class="itemList">
+		<view class="itemList" v-for="item in orderList" :key="item.id">
 			<view class="banner">
-				<text class="date">2020-09-09 19:00</text>
-				<text class="status">已付款</text>
+				<text class="date">{{orderTime(item.createTime)}}</text>
+				<view v-if="item.groupRuleId!=null">
+					<text class="status" v-if="item.groupStatus==0">待成团</text>
+					<text class="status" v-if="item.groupStatus==1">已成团</text>
+					<text class="status" v-if="item.groupStatus==2">未成团</text>
+				</view>
+				<view v-else>
+					<text class="status" v-if="item.orderStatus==0">待付款</text>
+					<text class="status" v-if="item.orderStatus==1">已付款</text>
+					<text class="status" v-if="item.orderStatus==2">退款中</text>
+					<text class="status" v-if="item.orderStatus==3">已退款</text>
+				</view>
+				
 			</view>
-			<view class="tip">
-				还差1人拼成，剩9小时38分钟结束
+			<view class="tip" v-if="item.groupRuleId!=null" >
+				还差{{item.groupMinMember-item.groupMember}}人拼成，剩9小时38分钟结束
 			</view>
 			<view class="desc">
 				
@@ -25,6 +36,43 @@
 </template>
 
 <script>
+	import utils from '@/utils/method.js'
+	export default{
+		
+		data(){
+			return{
+				orderList:[],
+				trDate:''
+			}
+		},
+	    computed:{
+			orderTime(){
+				return function(time){
+					return utils.unixToDatetime(time,1)
+				}
+			}
+		},
+		methods:{
+			getGroupList(){
+				this.$http({
+					apiName:'getOrderList',
+				}).then(res=>{
+					this.orderList=res.data
+					
+				}).catch(err=>{})
+			},
+		
+		},
+		async onLoad(opt) {
+			uni.showLoading({
+				title:"加载中...",
+				mask:true
+			})
+			await this.getGroupList()
+			uni.hideLoading()
+		},
+	
+	}
 </script>
 
 <style lang="scss" scoped>
@@ -36,7 +84,7 @@
 		box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(0,0,0,0.1);
 		border-radius: 12rpx;
 		width: 100%;
-		
+		margin-bottom: 40rpx;
 		.banner{
 			display: flex;
 			justify-content: space-between;

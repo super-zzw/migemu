@@ -4,12 +4,13 @@
 		<text class="text1">恭喜你，参团成功</text>
 		<view class="descBox">
 			<view class="imgList">
-				<view class="fpNumstImg" v-for="(imgItem,imgIndex) in 5" :key="imgIndex">
-					<image  class="img" src="../../static/+.png" ></image>
+				<view class="fpNumstImg" v-for="(imgItem,imgIndex) in course.imgList" :key="imgIndex">
+					<image  class="img" :src="imgItem" ></image>
 				</view>
 				<text class="status">已支付</text>
 			</view>
-			<text class="text2">还差1人拼成，剩9小时38分钟结束</text>
+			<text class="text2">还差{{course.groupMinMember-course.groupMember}}人拼成，剩
+			<text v-if="trDate.d>0">{{trDate.d}}天</text>{{trDate.h}}小时{{trDate.m}}分钟结束</text>
 		</view>
 		<view class="optBtn btn1" @tap="invite">邀请好友参团</view>
 		<view class="optBtn btn2">查看订单</view>
@@ -31,6 +32,8 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex'
+	import utils from "../../utils/method.js"
 	export default {
 		data() {
 			return {
@@ -48,13 +51,41 @@
 						name:'复制链接'
 					}
 				],
-				isInvite:false
+				isInvite:false,
+				courseId:'',
+				course:'',
+				trDate:''
 			};
 		},
 		methods:{
 			invite(){
 				this.isInvite=true
+			},
+			async getInfo(){
+				let res =await  this.$http({
+					apiName:"courseInfo",
+					data:{
+						courseId:this.courseId
+					}
+				})
+				this.course = res.data
+				this.$store.commit('orderInfoSet',this.course);
+				this.trDate=utils.transToDate(res.data.groupEndTime-res.timestamp)
+				console.log(this.trDate)
 			}
+			
+		},
+		
+		async onLoad(opt) {
+			if(opt.id){
+				this.courseId=opt.id	
+			}
+			uni.showLoading({
+				title:"加载中...",
+				mask:true
+			})
+			 await this.getInfo()
+			 uni.hideLoading()
 		}
 	}
 </script>
@@ -89,13 +120,15 @@
 		   display: flex;
 		   margin-top: 30rpx;
 		   .fpNumstImg{
-		   	width: 50rpx;
-		   	height: 50rpx;
-		   	margin-left: -15rpx;
+		   	width: 60rpx;
+		   	height: 60rpx;
+		   	margin-left: -10rpx;
 		   	.img{
 		   		width: 100%;
 		   		height: 100%;
+				border-radius: 50%;
 		   	}
+			
 		   	
 	   }
 	   .status{

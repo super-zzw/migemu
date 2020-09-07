@@ -33,7 +33,7 @@
 				</view>
 			</view>
 			
-			<view class="advertis">
+			<view class="advertis" @tap="toFight">
 				<image src="https://mgm-1300255297.cos.ap-nanjing.myqcloud.com/hyjy/default/group.png" ></image>
 			</view>
 			
@@ -114,6 +114,11 @@
 				})
 				await this.getData();
 				uni.hideLoading();
+			},
+			toFight(){
+				uni.navigateTo({
+					url:'/pagesD/index'
+				})
 			},
 			toPath(path){
 				uni.navigateTo({

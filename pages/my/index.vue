@@ -150,12 +150,12 @@ export default {
 				{
 					src: require('../../static/my/icon9.png'),
 					text: '优惠券',
-					to: '../../pagesC/index'
+					to: '../../pagesD/index'
 				},
 				{
 					src: require('../../static/my/icon10.png'),
 					text: '购课订单',
-					to: '../../pagesD/index'
+					to: '/pagesE/index'
 				},
 				{
 					src: require('../../static/my/icon6.png'),

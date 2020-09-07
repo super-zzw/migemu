@@ -32,10 +32,10 @@
 			</view>
 		</view>
 		<view class="info">
-			<view class="i0">
-				<uni-countdown color="#FFFFFF" background-color="#F23D3D" border-color="#F23D3D" splitorColor="#F23D3D"  :hour="10" :minute="01" :second="01" @timeup="timeUp"> </uni-countdown>
+			<view class="i0" v-if="type==2">
+				<uni-countdown color="#FFFFFF" background-color="#F23D3D" border-color="#F23D3D" splitorColor="#F23D3D"  :day="trDate.d" :hour="trDate.h" :minute="trDate.m" :second="trDate.s"  @timeup="timeUp"> </uni-countdown>
 				<text class="t1">后结束</text>
-				<text class="t2">10人起成团</text>
+				<text class="t2">{{course.groupMinMember}}人起成团</text>
 			</view>
 			<view class="i1">
 				<text class="it1" v-for="(sItem,sIndex) in course.subjectLis" :key="sIndex">{{sItem.title}}</text>
@@ -44,24 +44,25 @@
 			<view class="i2">
 				<view class="it1">
 					<image class="it1p1" src="../../static/xsth.png" mode=""></image>
-					<text class="it1p2">¥{{course.sellingPrice}}</text>
+					<text class="it1p2" v-if="type==1">¥{{course.sellingPrice}}</text>
+					<text class="it1p2" v-if="type==2">¥{{course.grouponPrice}}</text>
 					<text class="it1p3">¥{{course.originalPrice}}</text>
 				</view>
 				<view class="it2">
 					<colorTag :tagData="course" :showSubjectLis="false" ></colorTag>
 				</view>
 			</view>
-			<view class="i4">
+			<view class="i4" v-if="type==2">
 				<view class="imgList">
 					<!-- <view class="fpNumstImg" v-for="(imgItem,imgIndex) in order.group" :key="imgIndex">
 						<image v-if="imgItem.icon && imgIndex < 10" class="img" :src="imgItem.icon" mode=""></image>
 					</view> -->
-					<view class="fpNumstImg" v-for="(imgItem,imgIndex) in 5" :key="imgIndex">
-						<image  class="img" src="../../static/+.png" ></image>
+					<view class="fpNumstImg" v-for="(imgItem,imgIndex) in course.imgList" :key="imgIndex">
+						<image  class="img" :src="imgItem" ></image>
 					</view>
 					<image   src="../../static/+.png" class="fpNumstImg"></image>
-					<text class="t1">已有9人参团，</text>
-					<text class="t2">还差1人成团</text>
+					<text class="t1">已有{{course.groupMember}}人参团，</text>
+					<text class="t2">还差{{course.groupMinMember-course.groupMember}}人成团</text>
 				</view>
 			</view>
 			<!-- <view class="i3" @tap="showModal" data-target="Modal">
@@ -140,14 +141,15 @@
 					<image src="../../static/share.png" class="rebeatImg" mode=""></image>
 					<view class="rebeatText">邀请返利</view>
 				</view>
-				<view class="btns" >
-					<view class="buy optbtn" @tap="createOrder">
+				<view class="oprBtn" v-if="type==1" @tap="createOrder">立即购买</view>
+				<view class="btns" v-if="type==2">
+					<view class="dandubuy optbtn" @tap="createOrder">
 						<text class="desc">单独购买</text>
-						<text class="price">¥2999</text>	
+						<text class="price">¥{{course.sellingPrice}}</text>	
 					</view>
 					<view class="fight optbtn" @tap="fightOrder">
 						<text class="desc">我要参团</text>
-						<text class="price">¥1899</text>		
+						<text class="price">¥{{course.grouponPrice}}</text>		
 					</view>
 				</view>
 			</view>
@@ -245,7 +247,9 @@
 				commentHasMore:true,
 				isDrop: false, // 是否从课表里面进来的
 				arrangeCourseId: null, // 课程标识id
-				userInfo:""
+				userInfo:"",
+				type:'',
+				trDate:null
 			}
 		},
 		onShareTimeline(opt){
@@ -356,21 +360,29 @@
 				}
 			},
 			async fightOrder(){
-				this.$store.commit('orderInfoSet',this.course);
-				this.$store.commit('orderSchoolListSet',this.schoolList)
-				// uni.navigateTo({
-				// 	url:"/pages/order/confirm"
-				// })
-				if(this.isLogin){
-					uni.navigateTo({
-						url:"/pages/order/confirm?type=2"
+				if(this.course.buyFlag){
+					uni.showToast({
+						icon:'none',
+						title:'您已参加过该团购，无须再次参团'
 					})
 				}else{
-					this.$store.commit('jumpPageSet',{ path:"/pages/order/confirm?type=2" });
-					uni.navigateTo({
-						url:"/pages/author/author"
-					})
+					this.$store.commit('orderInfoSet',this.course);
+					this.$store.commit('orderSchoolListSet',this.schoolList)
+					// uni.navigateTo({
+					// 	url:"/pages/order/confirm"
+					// })
+					if(this.isLogin){
+						uni.navigateTo({
+							url:"/pages/order/confirm?type=2"
+						})
+					}else{
+						this.$store.commit('jumpPageSet',{ path:"/pages/order/confirm?type=2" });
+						uni.navigateTo({
+							url:"/pages/author/author"
+						})
+					}
 				}
+				
 			},
 			async getData(){
 				uni.showLoading({
@@ -385,6 +397,15 @@
 						}
 					})
 					this.course = res.data;
+					
+					if(res.data.groupRuleId!=null && res.data.grouponPrice>0){
+						this.type=2
+						this.trDate=utils.transToDate(res.data.groupEndTime-res.timestamp)
+						
+					}else{
+						this.type=1
+						
+					}
 					this.course.registerEndTime = utils.unixToDatetime(this.course.registerEndTime);
 					if(this.course.introduce){
 						this.course.introduce = this.course.introduce.replace(/\<img/gi, "<img class='html_img' ");
@@ -468,6 +489,7 @@
 				this.userInfo = data;
 				this.$store.commit('userInfoSet',data)
 			}
+		
 		},
 		mounted() {
 			this.dealDescHeight()
@@ -623,6 +645,7 @@
 					.img{
 						width: 100%;
 						height: 100%;
+						border-radius: 50%;
 					}
 					
 				}
@@ -776,10 +799,12 @@
 				margin-left: 30rpx;
 				background-color: #FDC623;
 				text-align: center;
+				font-weight: 600;
 				line-height: 96rpx;
 				color: #303133;
 				font-size: 36rpx;
 			}
+			
 			.btns{
 				background-color: #fff;
 				display: flex;
@@ -794,7 +819,7 @@
 					display: flex;
 					flex-direction: column;
 					align-items: center;
-					justify-content: space-around;
+					justify-content: center;
 					.desc{
 						font-size: 22rpx;
 						font-weight: 500;
@@ -806,7 +831,7 @@
 						color: #FFFFFF;
 					}
 				}
-				.buy{
+				.dandubuy{
 					background: #FDC623;
 				}
 				.fight{

@@ -51,22 +51,43 @@
 		data(){
 			return{
 				page:1,
-				size:10,
+				size:4,
 				list:[],
-				currentTime:''
+				currentTime:'',
+				hasNextPage:true
 			}
 		},
-	
+	   onReachBottom() {
+		   if(this.hasNextPage){
+			   this.page++
+			   this.getGroupList()
+		   }else{
+			
+			   	uni.showToast({
+			   		icon:'none',
+			   		title:'没有更多了...'
+			   	})
+			   
+		   }
+	   },
+	   
 		methods:{
-			getGroupList(){
-				this.$http({
+			async getGroupList(){
+				uni.showLoading({
+					title:'加载中...'
+				})
+				await this.$http({
 					apiName:'getGroupList',
 					data:{
 						page:this.page,
 						size:this.size
 					}
 				}).then(res=>{
-					this.list=res.data.list
+					uni.hideLoading()
+					this.hasNextPage=res.data.hasNextPage
+					
+					this.list=this.list.concat(res.data.list)
+					
 					this.currentTime = res.timestamp;
 					this.list.map(item => {
 						if(item.status == 0){
@@ -108,7 +129,7 @@
 	.banner {
 		height: 88rpx;
 		background: #F6F6F6;
-		font-size: 32rpx;
+		font-size: 28rpx;
 		font-weight: 500;
 		display: flex;
 		align-items: center;
@@ -121,7 +142,7 @@
 		}
 
 		.content {
-			margin-right: 8rpx;
+			margin-right: 5rpx;
 		}
 
 		.line {

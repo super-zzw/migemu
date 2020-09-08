@@ -89,13 +89,16 @@
 					<text class="cancel1" @tap="hideModal">取消</text>
 					<view class="card-list">
 						<view class="card-item" v-for="(item,index) in couponsList" :key="index" v-if="couponsList">
-							<view class="fengmian"  :style="{backgroundImage:item.useFlag?'url(../../static/yhq.png)':
-							'url(../../static/yhq2.png)'}">
+							<view class="fengmian couponBG1" v-if="item.useFlag">
 								<view class="con">
 									￥<text>{{item.amount}}</text>
 								</view>
 							</view>
-		
+		<view class="fengmian couponBG2"  v-else>
+			<view class="con">
+				￥<text>{{item.amount}}</text>
+			</view>
+		</view>
 							<view class="main">
 								<text class="title">{{item.title}}</text>
 							
@@ -592,17 +595,25 @@ export default{
 			display: flex;
 			margin-bottom: 40rpx;
 			// align-items: center;
-
+             .couponBG1{
+				 background: url(../../static/yhq.png) no-repeat;
+				 background-size:contain;
+			 }
+			 .couponBG2{
+			 				 background: url(../../static/yhq2.png) no-repeat;
+			 				 background-size:contain;
+			 }
 			.fengmian {
 				width: 200rpx;
 				height: 200rpx;
-				// background: url(../../static/yhq.png) no-repeat;
-				background-size:contain;
+				
+				
 				display: flex;
 				align-items: center;
 				justify-content: center;
+			}
 
-				.con{
+.con{
 					font-size: 28rpx;
 					font-family: PingFangSC-Semibold, PingFang SC;
 					font-weight: 600;
@@ -615,9 +626,6 @@ export default{
 						line-height: 58rpx;
 					}
 				}
-
-			}
-
 			.main {
 				flex: 1;
 				margin: 0 10rpx 0 50rpx;

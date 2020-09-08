@@ -76,17 +76,17 @@ export default{
 		  let Y = date.getFullYear() + '-';
 		  let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1);
 		  let D = date.getDate() < 10 ? '0' + date.getDate() + ' ' : date.getDate() + ' ';
-		  let h = date.getHours() < 10 ? '0' + date.getHours()  + ':' : date.getHours() + ':';
+		  let h = date.getHours() < 10 ? '0' + date.getHours()   : date.getHours();
 		  let m = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
 		  let s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
-		  if(x === 1){return (Y+M+'-'+D+h+m);}//2017-09-29 21:30
-		  if(x === 4){return (Y+M+'-'+D+h+"00");}//2017-09-29 21:00
-		  if(x === 2){return (Y+M+'-'+D+"00"+":"+"00");}//2019-09-29 00:00
+		  if(x === 1){return (Y+M+'-'+D+h+':'+m);}//2017-09-29 21:30
+		  if(x === 4){return (Y+M+'-'+D+h+':'+"00");}//2017-09-29 21:00
+		  if(x === 2){return (Y+M+'-'+D+':'+"00"+":"+"00");}//2019-09-29 00:00
 		  if(x === 3){return (Y+M+'-'+D);}//2019-09-29
 		  if(x === 5){return (Y+M+'-'+"01");}//2019-09-01
 		  if(x === 6){return (Y+M);}//2019-09
 		  if(x === 7){return (Y+M+'-'+D+h+m+':'+s);}//精确到秒
-		  if(x === 8){return (h+m);}//21:30
+		  if(x === 8){return (h+m);}//21+':':30
 		   if(x==9){return (date.getFullYear()+'.'+M+'.'+D)}
 		  if(x === 0){//取上一个月
 		    var Y2 = date.getFullYear(); //获取当前日期的年份
@@ -97,6 +97,7 @@ export default{
 		    }
 		    return (Y2+'-'+M2);
 		  }
+		  
 	},
     transToDate(data) {
     	var days = parseInt(data / (1000 * 60 * 60 * 24));

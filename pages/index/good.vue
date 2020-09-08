@@ -81,7 +81,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="cont">
+		<view class="cont" v-if="course.registerEndTime">
 			<view class="contTile">
 				课程报名截止时间
 			</view>
@@ -264,7 +264,7 @@
 				return {
 				  title: this.course.name,
 				  path: "/pages/index/good?id=" + this.courseId + "&inviteCode=" + this.userInfo.inviteCode,
-				  imageUrl:this.courseId.coverUrl,
+				  imageUrl:this.course.coverUrl,
 				}
 			},
 			toLogin(){

@@ -403,6 +403,13 @@
 						"navigationBarTitleText": "购课订单",
 						"enablePullDownRefresh": true
 					}
+				},
+				{
+					"path":"contactTeacher",
+					"style":{
+						"navigationBarTitleText": "联系教务老师",
+						"enablePullDownRefresh": true
+					}
 				}
 			]
 		}

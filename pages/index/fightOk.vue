@@ -13,17 +13,23 @@
 			<text v-if="trDate.d>0">{{trDate.d}}天</text>{{trDate.h}}小时{{trDate.m}}分钟结束</text>
 		</view>
 		<view class="optBtn btn1" @tap="invite">邀请好友参团</view>
-		<view class="optBtn btn2">查看订单</view>
+		<view class="optBtn btn2" @tap="orderDetail">查看订单</view>
 		
 		
 			<view class="mask" v-if="isInvite" @click.stop="isInvite=false"></view>
 			<view class="box" :class="isInvite?'box active':'box'">
 				<text class="title">分享到</text>
 				<view class="shareList">
-					<view class="shareItem" v-for="(item,index) in shareList" :key="index">
-						<image :src="item.icon" class="icon"></image>
-						<text class="desc">{{item.name}}</text>
-					</view>
+					<button
+					   class="shareItem"
+					   open-type="share"
+					   hover-class="none">
+					   <image
+					      class='icon'
+					      src="https://mgm-1300255297.cos.ap-nanjing.myqcloud.com/hyjy/default/share1.png" />
+						  <text class="desc">微信好友</text>
+					</button>
+					
 				</view>
 				<view class="cancelBtn" @tap="isInvite=false">取消</view>
 			</view>
@@ -37,27 +43,32 @@
 	export default {
 		data() {
 			return {
-				shareList:[
-					{
-						icon:'https://mgm-1300255297.cos.ap-nanjing.myqcloud.com/hyjy/default/share1.png',
-						name:'微信好友'
-					},
-					{
-						icon:'https://mgm-1300255297.cos.ap-nanjing.myqcloud.com/hyjy/default/share2.png',
-						name:'朋友圈'
-					},
-					{
-						icon:'https://mgm-1300255297.cos.ap-nanjing.myqcloud.com/hyjy/default/share3.png',
-						name:'复制链接'
-					}
-				],
 				isInvite:false,
-				courseId:'',
+				courseId:7,
 				course:'',
 				trDate:''
 			};
 		},
+		
+		
+	   computed:{
+	   	...mapState(['userInfo'])
+	   },
+	   onShareTimeline(opt){
+	      return {
+	        title: this.course.name,
+	        query: "id=" + this.courseId + "&inviteCode=" + this.userInfo.inviteCode,
+	        imageUrl:this.course.coverUrl,
+	      }
+	     },
 		methods:{
+			onShareAppMessage(options) {
+					    return {
+					      title:this.course.name,
+					      path: "/pages/index/good?id=" + this.courseId + "&inviteCode=" + this.userInfo.inviteCode,
+						  imageUrl:this.course.coverUrl,
+					    };
+			},
 			invite(){
 				this.isInvite=true
 			},
@@ -72,6 +83,13 @@
 				this.$store.commit('orderInfoSet',this.course);
 				this.trDate=utils.transToDate(res.data.groupEndTime-res.timestamp)
 				console.log(this.trDate)
+			},
+			orderDetail(){
+				
+				uni.navigateTo({
+					url:'/pages/order/orderDetail?id='+this.courseId,
+					
+				})
 			}
 			
 		},
@@ -214,7 +232,7 @@
 					.icon{
 						width: 80rpx;
 						height: 80rpx;
-						margin-bottom: 10rpx;
+						margin-bottom: 20rpx;
 					}
 					.desc{
 						font-size: 32rpx;
@@ -244,5 +262,8 @@
 			transition: height .4s; 
 		}
 			
-	
+	    button{
+			background: #fff;
+			line-height: 1;
+		}
 </style>

@@ -13,7 +13,7 @@
 			</view>
 		</view>
 		<view class="imgVideoBox">
-			<view class="vbItemCont" v-for="(item1,index1) in taskData.picList" :key="index1">
+			<view class="vbItemCont" v-for="(item1,index1) in taskData.picList" :key="index1">2
 				<image @tap="showImg(item1)" :src="item1" class="vbItem" mode=""></image>
 				<view class="chachaBox" @tap.stop="deleteFile(1,index1)"><image src="../static/chacha.png" class="chachaImg" mode=""></image></view>
 			</view>

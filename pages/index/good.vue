@@ -62,7 +62,8 @@
 					</view>
 					<image   src="../../static/+.png" class="fpNumstImg"></image>
 					<text class="t1">已有{{course.groupMember}}人参团，</text>
-					<text class="t2">还差{{course.groupMinMember-course.groupMember}}人成团</text>
+					<text class="t2" v-if="!Number(course.groupMinMember-course.groupMember)">还差{{course.groupMinMember-course.groupMember}}人成团</text>
+					<text class="t2" v-else>已成团</text>
 				</view>
 			</view>
 			<!-- <view class="i3" @tap="showModal" data-target="Modal">
@@ -406,7 +407,10 @@
 						this.type=1
 						
 					}
-					this.course.registerEndTime = utils.unixToDatetime(this.course.registerEndTime);
+					if(this.course.registerEndTime){
+						this.course.registerEndTime = utils.unixToDatetime(this.course.registerEndTime);
+					}
+					
 					if(this.course.introduce){
 						this.course.introduce = this.course.introduce.replace(/\<img/gi, "<img class='html_img' ");
 					}

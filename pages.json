@@ -9,7 +9,7 @@
 		{
 			"path": "pages/my/index",
 			"style": {
-				"navigationBarTitleText": "",
+				// "navigationBarTitleText": "",
 				"navigationBarBackgroundColor": "#FDC623",
 				"enablePullDownRefresh": true
 			}

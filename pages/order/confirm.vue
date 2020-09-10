@@ -13,7 +13,7 @@
 					</view>
 					<text class="status">待支付</text>
 				</view>
-				<text class="text2">为您加入仅差{{orderInfo.groupMinMember-orderInfo.groupMember}}人的拼团，支付后即可拼购成功</text>
+				<text class="text2">为您加入仅差{{orderInfo.groupMinMember-orderInfo.groupMember>0?orderInfo.groupMinMember-orderInfo.groupMember:0}}人的拼团，支付后即可拼购成功</text>
 			</view>
 		</view>
 		<view class="checkData">
@@ -52,7 +52,8 @@
 			</view>
 			<view class="opration">
 				<view class="price" v-if="type==1">
-					¥{{orderInfo.sellingPrice-yhq}}
+					
+					¥{{orderInfo.sellingPrice-yhq>=0?(orderInfo.sellingPrice-yhq).toFixed(2):0}}
 				</view>
 				<view class="price" v-else>
 					¥{{orderInfo.grouponPrice}}
@@ -119,7 +120,7 @@
 						
 					</view>
 					<view class="confirmBtn" @tap="modalName=null,yhq=couponsList[selYHQ].amount,wuserCouponId=
-					couponsList[selYHQ].couponId">确定</view>
+					couponsList[selYHQ].wuserCouponId">确定</view>
 					
 				</view>
 			

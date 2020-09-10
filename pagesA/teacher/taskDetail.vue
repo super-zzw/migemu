@@ -155,7 +155,7 @@ export default{
 					}
 				})
 				this.taskReviewData = res.data;
-				this.taskReviewData.createTime = utils.unixToDatetime(this.taskReviewData.createTime)
+				this.taskReviewData.createTime = utils.unixToDatetime(this.taskReviewData.updateTime)
 				if(this.taskReviewData.status == 2){
 					Object.assign(this.taskReviewData,utils.setTeacherStar(this.taskReviewData.star));
 				}

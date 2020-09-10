@@ -31,24 +31,30 @@
 		</view>
 		<view class="block notYet flex flex-column align-center">
 			<view class="title">最近待上课节</view>
-			<swiper :duration="500" class="outer-swiper" :class="userInfo.userType === 1 ? 'teacher' : ''" :disable-touch="true" :current="current">
-				<swiper-item @touchmove.stop>
+			<view :duration="500" class="outer-swiper" :class="userInfo.userType === 1 ? 'teacher' : 'student'" :disable-touch="true" :current="current">
+				<view @touchmove.stop>
 					<view class="swiper-item o">
-						<DateSwitch @day="getDay" @type="getType" @change="dateChange" @navTo="navTo('./classSchedule?move=1')"></DateSwitch>
-						<DefaultPage tipsText="- 今天没有待上课节哦 -" imgWidth="128" imgHeight="124" v-if="course.length === 0"></DefaultPage>
-						<swiper :duration="500" class="swiper-inside" :indicator-dots="course.length != 0 ? true : false" indicator-active-color="#ccc" :vertical="true" v-if="userInfo.userType === 2 && course.length != 0">  <!-- 是学生 -->	
-							<swiper-item v-for="(list, index) in course" :key="list.id" @tap="navTo(`./lessonsDetail?acid=${list.arrangeCourseId}&aclid=${list.arrangeCourseLessonId}&lid=${list.lessonId}`)">
+						<DateSwitch @day="getDay" @type="getType" @change="dateChange" @navTo="navTo('./classSchedule?move=1')"></DateSwitch>      
+						<view style="margin-top: 50rpx;" v-if="course.length === 0">
+							<DefaultPage tipsText="- 今天没有待上课节哦 -" imgWidth="128" imgHeight="124"  ></DefaultPage>
+						</view>
+						
+						<view  class="swiper-inside"   v-if="userInfo.userType === 2 && course.length != 0">  <!-- 是学生 -->	
+							<view v-for="(list, index) in course" :key="list.id" @tap="navTo(`./lessonsDetail?acid=${list.arrangeCourseId}&aclid=${list.arrangeCourseLessonId}&lid=${list.lessonId}`)">
 								<view class="swiper-item">
 									<view class="calendar-description">{{ list.lessonsName }}</view>
-									<view class="calendar-time" v-if="list.classRoomInfo">课室信息：{{ list.classRoomInfo }}</view>
-									<view class="calendar-time" v-else>课室信息：</view>
+									<view class="calendar-time" v-if="list.classInfo">课室信息：{{ list.classInfo }}</view>
+									<view class="calendar-time" v-if="list.liveUrl">直播课室网址：{{ list.liveUrl }}</view>
+									<view class="calendar-time" v-if="list.liveNumber">直播课室号码：{{ list.liveNumber }}</view>
+									<view class="calendar-time" v-if="list.livePwd">直播课室密码：{{ list.livePwd }}</view>
+									
 									<view class="calendar-time flex align-center">
 										上课时间：{{ list.startTime }}
 										<text class="grayBg">未开始</text>
 									</view>
 								</view>
-							</swiper-item>
-						</swiper>
+							</view>
+						</view>
 						<swiper :duration="500" class="swiper-inside teacher" :indicator-dots="true" indicator-active-color="#ccc" :vertical="true" v-if="userInfo.userType === 1 && course.length != 0">
 							<swiper-item v-for="(list, index) in course" :key="list.id" @tap="navTo(`../../pagesA/teacher/teacherLessonsDetail?aid=${list.arrangeCourseLessonId}`)">
 								<view class="swiper-item row">
@@ -72,8 +78,8 @@
 							</swiper-item>
 						</swiper>
 					</view>
-				</swiper-item>
-			</swiper>
+				</view>
+			</view>
 		</view>
 		<view class="block nav flex " v-if="userInfo.userType === 2">
 			<template v-for="(item, index) in navLists">
@@ -150,7 +156,7 @@ export default {
 				{
 					src: require('../../static/my/icon9.png'),
 					text: '优惠券',
-					to: '../../pagesD/index'
+					to: '../../pagesC/index'
 				},
 				{
 					src: require('../../static/my/icon10.png'),
@@ -288,6 +294,7 @@ export default {
 					data.list.forEach(item => {item['startTime'] = Utils.unixToDatetime(item['startTime'])});
 				}
 				this.course = data.list;
+				console.log(this.course)
 				uni.hideLoading();
 			}catch(e){
 				console.log(e)
@@ -329,7 +336,7 @@ export default {
 	min-height: 100vh;
 }
 .outer-swiper {
-	height: 300rpx;
+	// height: 300rpx;
 	width: 100%;
 	&.teacher {
 		height: 440rpx;
@@ -339,15 +346,23 @@ export default {
 	}
 	.swiper-inside {
 		width: 100%;
-		height: 208rpx;
+		
 		&.teacher {
 			height: 376rpx;
+		}
+		&.student {
+			height: 250rpx;
 		}
 		.swiper-item {
 			background-color:#F6F6F6;
 			border-radius: 8rpx;
 			padding: 30rpx;
 			margin-bottom: 30rpx;
+			
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+
 			.calendar-description {
 				margin-top: 10rpx;
 				margin-bottom: 20rpx;

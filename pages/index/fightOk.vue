@@ -9,7 +9,9 @@
 				</view>
 				<text class="status">已支付</text>
 			</view>
-			<text class="text2">还差{{course.groupMinMember-course.groupMember}}人拼成，剩
+			<text class="text2">
+				<text v-if="course.groupMinMember-course.groupMember>0">还差{{course.groupMinMember-course.groupMember}}人拼成</text>
+				<text v-else>已成团</text>，剩
 			<text v-if="trDate.d>0">{{trDate.d}}天</text>{{trDate.h}}小时{{trDate.m}}分钟结束</text>
 		</view>
 		<view class="optBtn btn1" @tap="invite">邀请好友参团</view>
@@ -67,6 +69,9 @@
 					      title:this.course.name,
 					      path: "/pages/index/good?id=" + this.courseId + "&inviteCode=" + this.userInfo.inviteCode,
 						  imageUrl:this.course.coverUrl,
+						  success:()=>{
+							  this.isInvite=false
+						  }
 					    };
 			},
 			invite(){

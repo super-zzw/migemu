@@ -7,10 +7,10 @@
 			<text class="content">邀请好友</text>
 			<text class="line"></text>
 			<text class="content">满员购课(不满员退款)</text>
-			<image src="../static/rule.png" class="icon2"></image>
+			<!-- <image src="../static/rule.png" class="icon2"></image> -->
 		</view>
-		<view class="list">
-			<view class="itemList" v-for="item in list" :key="item.id" @tap="toDetail(item.id)">
+		<view class="list" v-if="list.length>0">
+			<view class="itemList" v-for="item in list" :key="item.id" @tap="toDetail(item.courseId)">
 				<image :src="item.courseImg" class="lesson-img"></image>
 				<view class="main">
 					<view class="title">
@@ -20,8 +20,8 @@
 						<text class="tag" v-if="item.courseType==1">线上课</text>
 					</view>
 					<view class="price">
-						<text class="now">¥1399</text>
-						<text class="origin">¥2899</text>
+						<text class="now">¥{{item.courseGrouponPrice}}</text>
+						<text class="origin">¥{{item.courseOriginalPrice}}</text>
 					</view>
 					<view class="bt">
 						<view class="left">
@@ -38,6 +38,10 @@
 				</view>
 			</view>
 		</view>
+		<view class="nullPage" v-if="list.length==0" >
+			<DefaultPage />
+		</view>
+		
 	</view>
 </template>
 
@@ -70,7 +74,12 @@
 			   
 		   }
 	   },
-	   
+	   onPullDownRefresh() {
+	   	this.page=1
+		this.list=[]
+		this.getGroupList()
+		uni.stopPullDownRefresh()
+	   },
 		methods:{
 			async getGroupList(){
 				uni.showLoading({
@@ -177,8 +186,7 @@
 				margin-left: 22rpx;
 				flex: 1;
 				.title {
-					// display: flex;
-					// flex-direction: column;
+					
 					margin-top: 15rpx;
                      .t1{
 						 display: block;
@@ -215,7 +223,7 @@
 						margin-right: 16rpx;
 					}
 					.origin{
-						
+					    text-decoration: line-through;
 						font-size: 28rpx;
 						font-weight: 500;
 						color: #C0C4CC;
@@ -263,5 +271,8 @@
 		.itemList:first-child{
 			margin-top: 0;
 		}
+	}
+	.nullPage{
+		height: 80vh;
 	}
 </style>

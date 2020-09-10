@@ -1,6 +1,6 @@
 <template>
-	<view class="list">
-		<view class="itemList" v-for="item in orderList" :key="item.id" >
+	<view class="list" v-if="flag">
+		<view class="itemList" v-for="item in orderList" :key="item.id" v-if="orderList.length>0">
 			<view class="banner">
 				<text class="date">{{orderTime(item.createTime)}}</text>
 				<view v-if="item.groupRuleId!=null">
@@ -16,8 +16,9 @@
 				</view>
 				
 			</view>
-			<view class="tip" v-if="item.groupRuleId!=null" >
-				还差{{item.groupMinMember-item.groupMember}}人拼成，剩{{trDate(item)}}结束
+			<view class="tip" v-if="item.groupStatus==0" >
+				<text v-if="item.groupMinMember-item.groupMember>0">还差{{item.groupMinMember-item.groupMember}}人拼成</text>
+				<text v-else>已成团</text>，剩{{trDate(item)}}结束
 			</view>
 			<view class="desc" @tap="toDetail(item.id)">
 				
@@ -45,7 +46,7 @@
 						
 					</view>
 					<view v-else @tap.stop="preventP">
-						<!-- <text class="optBtn type1" v-if="item.orderStatus==0">待付款</text> -->
+						
 					
 						<button open-type="contact" class="optBtn type1" hover-class="none" >
 							联系客服
@@ -54,6 +55,7 @@
 				</view>
 			</view>
 		</view>
+		<DefaultPage v-if="orderList.length==0"/>
 	</view>
 </template>
 
@@ -65,8 +67,13 @@
 		data(){
 			return{
 				orderList:[],
-				timestamp:''
+				timestamp:'',
+				flag:false 
 			}
+		},
+		onPullDownRefresh() {
+			this.getGroupList()
+			uni.stopPullDownRefresh()
 		},
 	    computed:{
 			...mapState(['userInfo']),
@@ -79,21 +86,25 @@
 			trDate(){
 				var This=this
 				return function(obj){
-					var trDate=utils.transToDate(obj.groupEndTime-This.timestamp)
+					// if(obj.groupStatus==0){
+						
+						var date=utils.transToDate(obj.groupEndTime-This.timestamp)
+						
+									  if(date.h>0){
+										  return date.d+'天'+date.h+'小时'+date.m+'分钟'
+									  }else if(h>0){
+										  return date.h+'小时'+date.m+'分钟'
+									  }else{
+										  return date.m+'分钟'
+									  }
+					// }
 					
-								  if(trDate.h>0){
-									  return trDate.d+'天'+trDate.h+'小时'+trDate.m+'分钟'
-								  }else if(h>0){
-									  return trDate.h+'小时'+trDate.m+'分钟'
-								  }else{
-									  return trDate.m+'分钟'
-								  }
 					
 				}
 			}
 		},
 		methods:{
-			preventP(){},
+			
 			onShareAppMessage(e) {
 				
 				let item=e.target.dataset.item
@@ -111,10 +122,11 @@
 					url:'./contactTeacher?id='+id
 				})
 			},
-			getGroupList(){
-				this.$http({
+			async getGroupList(){
+				await this.$http({
 					apiName:'getOrderList',
 				}).then(res=>{
+					this.flag=true
 					this.orderList=res.data
 					this.timestamp=res.timestamp
 				}).catch(err=>{})
@@ -153,6 +165,7 @@
 <style lang="scss" scoped>
 	.list{
 		padding: 30rpx 30rpx 0;
+		height: 100vh;
 	}
 	.itemList{
 		background: #FFFFFF;

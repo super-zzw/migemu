@@ -24,11 +24,11 @@ export default{
 <style lang="scss" scoped>
 .colorTag{
 	margin-top: 20rpx;
-	height: 50rpx;
-	white-space: nowrap;
+	// height: 50rpx;
+	// white-space: nowrap;
 	width: 100%;
-	overflow-x: auto;
-	overflow-y: hidden;
+	// overflow-x: auto;
+	// overflow-y: hidden;
 	.tag{
 		display: inline-block;
 		margin-right: 20rpx;
@@ -38,6 +38,7 @@ export default{
 		padding-right: 10rpx;
 		border-radius: 20rpx;
 		font-weight: 200;
+		margin-bottom: 8rpx;
 	}
 }
 </style>

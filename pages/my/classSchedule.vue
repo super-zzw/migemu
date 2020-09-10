@@ -90,7 +90,7 @@
 					<view class="t-blocks">
 						<DefaultPage v-if="teacherSign.length == 0"></DefaultPage>
 						<view class="block" @click="navTo(`../../pagesA/teacher/teacherLessonsDetail?aid=${item.arrangeCourseLessonId}`)" v-for="item in teacherSign"  v-else  :key="item.id" >
-							<view class="block-top">
+							<view class="block-top">/
 								<view class="row one flex align-center">
 									<text class="name">{{item.courseTitle}}</text>
 								</view>
@@ -152,7 +152,7 @@
 									<view class="calendar-time">时间段：{{item.startTimeStr}}-{{item.endTimeStr}}</view>
 									<view class="tipss" >  <!--  如果是线上课显示这个 -->
 										<text :class="item.signInFlag==1 ? 'greenBg' : 'grayBg'" >{{item.signInFlag == 1 ?'已签到' : '未签到'}}</text>
-										<text :class="item.liveUrl ? 'greenBg' : 'grayBg'">{{item.liveUrl ? '已填写课室号':'未填写课室号'}}</text>
+										<text :class="item.liveUrl ? 'greenBg' : 'grayBg'" v-if="item.courseType != 0">{{item.liveUrl ? '已填写课室号':'未填写课室号'}}</text>
 									</view>
 								</view>
 							</template>
@@ -178,7 +178,7 @@
 									<view class="calendar-time">时间段：{{item.startTimeStr}}-{{item.endTimeStr}}</view>
 									<view class="tipss" >  <!--  如果是线上课显示这个 -->
 										<text :class="item.signInFlag == 1 ? 'greenBg' : 'grayBg'" >{{item.signInFlag == 1 ? '已签到' : '未签到'}}</text>
-										<text :class="item.liveUrl ? 'greenBg' : 'grayBg'">{{item.liveUrl ? '已填写课室号':'未填写课室号'}}</text>
+										<text :class="item.liveUrl ? 'greenBg' : 'grayBg'" v-if="item.courseType != 0">{{item.liveUrl ? '已填写课室号':'未填写课室号'}}</text>
 									</view>
 								</view>
 							</template>
@@ -341,7 +341,7 @@
 				});
 				data.notStart.forEach(item=>{item['startTime'] = utils.unixToDatetime(item['startTime'])});
 				data.done.forEach(item => {
-					item['startTime'] = utils.unixToDatetime(item['startTime'],8);
+					item['startTime'] = utils.unixToDatetime(item['startTime'],1);
 					if(item['endTime']){
 						item['endTime'] = utils.unixToDatetime(item['endTime'],8);
 					}

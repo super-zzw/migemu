@@ -60,7 +60,7 @@
 			</view>
 			<view class="section">订单总金额：¥{{course.payAmount}}</view>
 			<view class="section" v-if="course.groupRuleId==null&&course.couponAmount>0">优惠券抵扣金额：- ¥{{course.couponAmount}}</view>
-			<view class="section">订单实付金额：¥{{course.payAmount-course.couponAmount}}</view>
+			<view class="section">订单实付金额：¥{{(course.payAmount-course.couponAmount).toFixed(2)}}</view>
 			
 			<view class="section" v-if="course.payType==-1">付款方式：未支付</view>
 			<view class="section" v-if="course.payType==0">付款方式：微信支付</view>
@@ -104,7 +104,8 @@
 				courseId:'',
 				course:'',
 				timestamp:'',
-				createTime:''
+				createTime:'',
+				isFight:false
 			};
 		},
 		computed:{
@@ -133,6 +134,9 @@
 			uni.showLoading({
 			  title:'加载中'	
 			})
+			if(opt.fight){
+				this.isFight=true
+			}
 			if(opt.id){
 				this.courseId=opt.id
 			}
@@ -160,18 +164,18 @@
 				});
 			},
 			contactT(){
-				
 				uni.navigateTo({
 					url:'/pagesE/contactTeacher?id='+this.course.teacherId
 				})
 			},
 			async getData(){
-				
+				let dataInfo={}
+				if(!this.isFight){
+					dataInfo['orderId']=this.courseId
+				}
 				let res =await this.$http({
 					apiName:"getOrderInfo",
-					data:{
-						orderId:this.courseId
-					}
+					data:dataInfo
 				})
 				this.course = res.data
 				this.timestamp=res.timestamp

@@ -48,7 +48,8 @@
 				isInvite:false,
 				courseId:7,
 				course:'',
-				trDate:''
+				trDate:'',
+				orderid:''
 			};
 		},
 		
@@ -92,7 +93,7 @@
 			orderDetail(){
 				
 				uni.navigateTo({
-					url:'/pages/order/orderDetail?id='+this.courseId,
+					url:'/pages/order/orderDetail?fight=true',
 					
 				})
 			}
@@ -102,6 +103,9 @@
 		async onLoad(opt) {
 			if(opt.id){
 				this.courseId=opt.id	
+			}
+			if(opt.orderid){
+				this.orderid=opt.orderid	
 			}
 			uni.showLoading({
 				title:"加载中...",

@@ -62,7 +62,7 @@
 					</view>
 					<image   src="../../static/+.png" class="fpNumstImg"></image>
 					<text class="t1">已有{{course.groupMember}}人参团，</text>
-					<text class="t2" v-if="!Number(course.groupMinMember-course.groupMember)">还差{{course.groupMinMember-course.groupMember}}人成团</text>
+					<text class="t2" v-if="course.groupMinMember-course.groupMember>0">还差{{course.groupMinMember-course.groupMember}}人成团</text>
 					<text class="t2" v-else>已成团</text>
 				</view>
 			</view>

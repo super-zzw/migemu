@@ -119,14 +119,13 @@ export default{
 		async submit1(){
 			let _data = [
 				{
-					data:(!this.taskReviewData.teacherModel.content.trim() && 
-					!this.taskReviewData.teacherModel.picList.length &&
-					!this.taskReviewData.teacherModel.voiceList.length &&
-					!this.taskReviewData.teacherModel.videoList.length) ? "" : 1,
+					data:!!((this.taskReviewData.teacherModel.content!=null&&this.taskReviewData.teacherModel.content.trim())||this.taskReviewData.teacherModel.picList.length||this.taskReviewData.teacherModel.voiceList.length||this.taskReviewData.teacherModel.videoList.length)?1:'',
+					
 					info:"请输入批阅内容"
 				}
 			]
 			let jres = await utils.judgeData(_data);
+			
 			if(jres){
 				uni.showLoading({
 					title:"提交中...",

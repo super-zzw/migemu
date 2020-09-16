@@ -1,6 +1,6 @@
 import Api from './api.js'
 import utils from "./method.js"
-var test = true;
+var test = false;
 var _baseUrl = '';
 if (test) {
 	// _baseUrl = 'http://192.168.1.25:9193/api';  //测试地址日强

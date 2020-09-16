@@ -1,6 +1,6 @@
 <template>
-	<view class="wrap">
-		<view class="" v-if="course">
+	<view class="wrap" v-if="course">
+		
 		<view class="banner">
 			<swiper class="swiperBox"  :current="bannerTab" :autoplay="false" @change="changeBannerSwiper">
 				<swiper-item v-for="(item,index) in course.picUrlList" :key="item">
@@ -212,7 +212,7 @@
 					<image @tap="hideModal" class="close" src="../../static/closeModal.png" mode=""></image>
 				</view>
 			</view>
-		</view>
+		
 		</view>
 	</view>
 </template>
@@ -250,9 +250,17 @@
 				arrangeCourseId: null, // 课程标识id
 				userInfo:"",
 				type:'',
-				trDate:null
+				trDate:null,
+				
 			}
 		},
+	    onShareAppMessage (){
+	    	return {
+	    	  title: this.course.name,
+	    	  path: "/pages/index/good?id=" + this.courseId + "&inviteCode=" + this.userInfo.inviteCode,
+	    	  imageUrl:this.course.coverUrl,
+	    	}
+	    },
 		onShareTimeline(opt){
 		   return {
 		     title: this.course.name,
@@ -261,13 +269,6 @@
 		   }
 		  },
 		methods:{
-			onShareAppMessage (){
-				return {
-				  title: this.course.name,
-				  path: "/pages/index/good?id=" + this.courseId + "&inviteCode=" + this.userInfo.inviteCode,
-				  imageUrl:this.course.coverUrl,
-				}
-			},
 			toLogin(){
 				let _path = "/pages/index/good?id=" + this.courseId + "&drop" + this.isDrop + "&aid=" + this.arrangeCourseId;
 				this.$store.commit('jumpPageSet',{
@@ -397,6 +398,7 @@
 							courseId:this.courseId
 						}
 					})
+					
 					this.course = res.data;
 					
 					if(res.data.groupRuleId!=null && res.data.grouponPrice>0){
@@ -490,6 +492,7 @@
 			//获取我的邀请码
 			if(this.isLogin){
 				const {data} = await this.$http({apiName: "getUserInfo"});
+				
 				this.userInfo = data;
 				this.$store.commit('userInfoSet',data)
 			}

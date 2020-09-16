@@ -47,6 +47,11 @@
 					</view>
 				</view>
 			</view>
+			
+			<view class="taskBox taskStart" v-if="task.lessonJob.checkStatus == 2">
+				<Grade :start="task.teacherCStudent.star" :isClick="false"></Grade>
+			</view>
+			
 			<view class="taskBox taskMark" v-if="task.lessonJob.checkStatus == 2">
 				<image src="../../static/mark.png" class="markImg" mode=""></image>
 				<view class="detailMore detailMore3">
@@ -73,9 +78,11 @@
 import taskItem from '@/components/taskItem.vue'
 import taskCourse from '@/components/taskCourse.vue'
 import mediaShow from '@/components/mediaShow.vue'
+import Grade from '@/components/Grade.vue';
 import utils from '../../utils/method.js'
 export default{
 	components:{
+		Grade,
 		taskItem,
 		taskCourse,
 		mediaShow
@@ -259,6 +266,11 @@ export default{
 			}
 		}
 	}
+	.taskStart{
+		margin-top: 40rpx;
+		display: flex;
+	}
+	
 	.taskMark{
 		margin-top: 40rpx;
 		.markImg{

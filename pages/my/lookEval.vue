@@ -2,10 +2,10 @@
 	<view class="content">
 		<view class="view-context">
 			<text>{{dataObj.content}}</text>
-			<view class="imgs flex " v-if="imgSrcs.length!==0">
-				<image :src="src" v-for="src in dataObj.imgs" :key="src.id" mode=""></image>
+			<view class="imgs flex " v-if="dataObj.imgList.length!==0">
+				<image :src="src" v-for="(src,index) in dataObj.imgList" :key="index" mode=""></image>
 			</view>
-			<button class="updateBtn" @tap="navTo(`./evaluate?context=${dataObj.content}&imgs=${dataObj.img}&cid=${dataObj.courseId}&cmmid=${commentCourseId}`)">修改评价</button>
+			<button class="updateBtn" @tap="navTo(`./evaluate?context=${dataObj.content}&imgs=${dataObj.imgList}&cid=${dataObj.courseId}&cmmid=${commentCourseId}`)">修改评价</button>
 		</view>
 	</view>
 </template>
@@ -31,8 +31,8 @@
 						commentCourseId: this.commentCourseId
 					}
 				});
-				data['imgs'] = data.img.split(",");
-				console.log(data);
+				// data['imgs'] = data.img.split(",");
+				// console.log(data);
 				this.dataObj = data;
 			},
 			navTo(path){

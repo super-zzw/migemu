@@ -1,6 +1,6 @@
 <template>
 	<view class="taskData">
-		<view class="taskText">
+		<view class="taskText" v-if="taskData.content">
 			{{taskData.content}}
 		</view>
 		<view class="audioBox">

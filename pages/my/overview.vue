@@ -33,7 +33,7 @@
 						<image src="../../static/my/pj.png" ></image>
 						课程评价
 					</view>
-					<view class="block-bottom-col flex align-center justify-center" v-else @tap="navTo(`./lookEval?cid=${detail.commentCourseId}`)">
+					<view class="block-bottom-col flex align-center justify-center" v-else @tap.stop="navTo(`./lookEval?cid=${detail.commentCourseId}`)">
 						<image src="../../static/look.png" ></image> 
 						查看课评
 					</view>
@@ -68,7 +68,7 @@
 						<image src="../../static/my/pj.png" ></image>
 						课程评价
 					</view>
-					<view class="block-bottom-col flex align-center justify-center" v-else @tap="navTo(`./lookEval?cid=${detail.commentCourseId}`)">
+					<view class="block-bottom-col flex align-center justify-center" v-else @tap.stop="navTo(`./lookEval?cid=${detail.commentCourseId}`)">
 						<image src="../../static/look.png" ></image> 
 						查看课评
 					</view>

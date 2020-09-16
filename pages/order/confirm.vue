@@ -102,7 +102,7 @@
 		</view>
 							<view class="main">
 								<text class="title">{{item.title}}</text>
-							
+							   <text class="txt">{{item.minConsumption|useMethod}}</text>
 								<text class="date">{{item.startTime|date}} 至 {{item.endTime|date}} 有效</text>
 							</view>
 							<view class="circle" v-if="item.useFlag">
@@ -151,7 +151,7 @@ export default{
 			yhq:0,
 			couponsList:[],
 			type:'',
-			selYHQ:0,
+			selYHQ:-1,
 			wuserCouponId:''
 		}
 	},
@@ -159,7 +159,13 @@ export default{
 		...mapState(['orderInfo','orderSchoolList','inviteCode','userInfo'])
 	},
 	filters:{
-		
+		useMethod(data){
+			if(data==-1){
+				return '无条件使用'
+			}else{
+				return '订单满'+data+'使用'
+			}
+		},
 		date(data){
 			return utils.unixToDatetime(data,9)
 		}

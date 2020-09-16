@@ -25,7 +25,7 @@
 					<view class="text time t" v-if="detail.courseType == 1">上课时间：{{detail.startTime || ''}} {{detail.startTimeStr || ''}}</view>  
 					
 					<view class="on-line flex flex-column" v-if="detail.courseType == 1 && detail.liveUrl">
-						<view class="on-line-col flex align-center" v-if="detail.liveUr">直播课室网址：<text>{{detail.liveUrl}} </text><image @tap.stop="copy(detail.liveUrl)" src="../../static/my/oncopy.png" mode=""></image></view>
+						<view class="on-line-col flex align-center" v-if="detail.liveUrl">直播课室网址：<text>{{detail.liveUrl}} </text><image @tap.stop="copy(detail.liveUrl)" src="../../static/my/oncopy.png" mode=""></image></view>
 						<view class="on-line-col flex align-center" v-if="detail.liveNumber">直播课室号码：<text>{{detail.liveNumber}} </text><image @tap.stop="copy(detail.liveNumber)" src="../../static/my/oncopy.png" mode=""></image></view>
 						<view class="on-line-col flex align-center" v-if="detail.livePwd">直播课室密码：<text>{{detail.livePwd}} </text><image @tap.stop="copy(detail.livePwd)" src="../../static/my/oncopy.png" mode=""></image></view>
 					</view>
@@ -100,7 +100,12 @@
 					</view>
 					<view class="btns">
 						<text class="grayBg" v-if="list.signInFlag == 0 "  @tap="showModal($event,'sign',index)" data-target="Modal">未签到</text>
-						<text class="greenBg" v-else @tap="showModal($event,'sign',index)" data-target="Modal">已签到</text>
+						<text class="greenBg" v-if="list.signInFlag == 2 "  @tap="showModal($event,'sign',index)" data-target="Modal">已到达</text>
+						<text class="grayBg" v-if="list.signInFlag == 3 "  @tap="showModal($event,'sign',index)" data-target="Modal">请假</text>
+						<text class="grayBg" v-if="list.signInFlag == 4 "  @tap="showModal($event,'sign',index)" data-target="Modal">迟到</text>
+						<text class="grayBg" v-if="list.signInFlag == 5 "  @tap="showModal($event,'sign',index)" data-target="Modal">早退</text>
+						<text class="grayBg" v-if="list.signInFlag == 6 "  @tap="showModal($event,'sign',index)" data-target="Modal">旷课</text>
+						<text class="greenBg" v-if="list.signInFlag == 1 " @tap="showModal($event,'sign',index)" data-target="Modal">已签到</text>
 						<text class="grayBg" :data-id="list.studentReservedLessonId" :data-name="list.studentName" @tap="navToFillClass(`./fillClass`,$event)" v-if="!list.commentStudentId">未课评</text>
 						<text class="greenBg" :data-name="list.studentName" @tap="navToSoure(index,$event)" v-else>已课评</text>
 					</view>
